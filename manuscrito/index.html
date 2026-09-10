@@ -68,9 +68,9 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(5, 7, 12, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      background: rgba(11, 12, 16, 0.68);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       z-index: 999999;
       display: flex;
       align-items: center;
@@ -772,7 +772,6 @@
       
       <!-- ETAPA 1: FORMULÁRIO DE ENTRADA -->
       <div class="modal-form-step" id="modalFormStep">
-        <div class="modal-icon-badge">🎁</div>
         <h2 class="modal-headline">PARABÉNS POR DAR ESSE PASSO IMPORTANTE NA SUA VIDA</h2>
         <p class="modal-subtext">INSIRA SEU EMAIL PARA LIBERAR O ACESSO</p>
         
@@ -787,19 +786,11 @@
         </form>
       </div>
 
-      <!-- ETAPA 2: CARREGAMENTO DE 30 SEGUNDOS COM ÍCONE DE CARREGANDO -->
+      <!-- ETAPA 2: CARREGAMENTO DE 30 SEGUNDOS COM APENAS SÍMBOLO DE CARREGANDO -->
       <div class="modal-loading-step" id="modalLoadingStep" style="display: none;">
         <div class="modal-spinner"></div>
         <h3 class="loading-title">LIBERANDO SEU ACESSO...</h3>
-        <p class="loading-subtext">Sua área exclusiva está sendo configurada e seus bônus estão sendo liberados. Por favor, aguarde.</p>
-        
-        <div class="modal-progress-bar-bg">
-          <div class="modal-progress-bar-fill" id="modalProgressFill"></div>
-        </div>
-        <div class="modal-progress-info">
-          <span>Status: Incorporando Bônus...</span>
-          <span id="modalProgressPercent">0%</span>
-        </div>
+        <p class="loading-subtext">Sua área exclusiva está sendo configurada. Por favor, aguarde.</p>
       </div>
 
     </div>
@@ -928,37 +919,15 @@
       const emailInput = document.getElementById('userEmail');
       if (!emailInput || !emailInput.value.trim()) return;
 
-      // Oculta formulário de dados e exibe o indicador de carregando de 30 segundos
+      // Oculta formulário de dados e exibe apenas o símbolo de carregando por 30 segundos
       document.getElementById('modalFormStep').style.display = 'none';
       document.getElementById('modalLoadingStep').style.display = 'flex';
 
-      const DURATION_30S_MS = 30000; // 30 Segundos
-      const startTime = performance.now();
-      const fillEl = document.getElementById('modalProgressFill');
-      const percentEl = document.getElementById('modalProgressPercent');
-
-      function animateGateLoading(currentTime) {
-        const elapsed = currentTime - startTime;
-        const pct = Math.min(100, Math.floor((elapsed / DURATION_30S_MS) * 100));
-        fillEl.style.width = pct + '%';
-        percentEl.innerText = pct + '%';
-
-        if (elapsed < DURATION_30S_MS) {
-          requestAnimationFrame(animateGateLoading);
-        } else {
-          fillEl.style.width = '100%';
-          percentEl.innerText = '100%';
-
-          // Após 30 segundos, esconde o modal overlay e libera a página do upsell
-          setTimeout(() => {
-            const overlay = document.getElementById('gateModalOverlay');
-            overlay.classList.add('hidden');
-            document.body.classList.remove('modal-locked');
-          }, 300);
-        }
-      }
-
-      requestAnimationFrame(animateGateLoading);
+      setTimeout(() => {
+        const overlay = document.getElementById('gateModalOverlay');
+        overlay.classList.add('hidden');
+        document.body.classList.remove('modal-locked');
+      }, 30000); // 30 Segundos
     }
 
     // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 35 SEGUNDOS
