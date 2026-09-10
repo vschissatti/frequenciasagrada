@@ -10,12 +10,18 @@
  */
 
 // -------------------------------------------------------------
-// 1. CONFIGURAÇÃO DE CAMINHOS DOS ARQUIVOS
+// 1. CONFIGURAÇÃO DE CAMINHOS DOS ARQUIVOS (WHITE / BLACK)
 // -------------------------------------------------------------
-$SAFE_PAGE  = __DIR__ . '/safe.html';
-$BLACK_PAGE = __DIR__ . '/black.html';
+$SAFE_PAGE  = __DIR__ . '/frequencia33.html'; // White Page
+$BLACK_PAGE = __DIR__ . '/frequencia.html';   // Black Page (Money Page)
 
-// Fallback para safe page no subdiretório se não existir safe.html na raiz
+// Fallbacks de compatibilidade
+if (!file_exists($SAFE_PAGE) && file_exists(__DIR__ . '/safe.html')) {
+    $SAFE_PAGE = __DIR__ . '/safe.html';
+}
+if (!file_exists($BLACK_PAGE) && file_exists(__DIR__ . '/black.html')) {
+    $BLACK_PAGE = __DIR__ . '/black.html';
+}
 if (!file_exists($SAFE_PAGE) && file_exists(__DIR__ . '/aoracaosecreta/index.html')) {
     $SAFE_PAGE = __DIR__ . '/aoracaosecreta/index.html';
 }
