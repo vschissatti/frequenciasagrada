@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
 <head>
+  <!-- Roteador de Campanha por Parâmetro URL -->
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      // Mantém na VSL se vier com parâmetro do anúncio (ex: ?src=vsl, ?fbclid=... ou ?utm_source=...)
+      const hasCampaignParam = params.has('src') || params.has('fbclid') || params.has('utm_source') || params.has('vsl');
+      if (!hasCampaignParam) {
+        window.location.replace('/aoracaosecreta');
+      }
+    })();
+  </script>
+
   <title>Frequência 33 – E-mail vazado do Epstein</title>
   <meta name="robots" content="index, follow">
   <meta charset="utf-8">
