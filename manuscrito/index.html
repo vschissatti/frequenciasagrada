@@ -75,6 +75,21 @@
       margin-bottom: 20px;
     }
 
+    .bonus-badge {
+      display: inline-block;
+      background-color: #ffb000;
+      color: #000000;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      padding: 6px 16px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+      box-shadow: 0 4px 12px rgba(255, 176, 0, 0.3);
+    }
+
     .main-title {
       font-family: 'Poppins', sans-serif;
       font-size: clamp(20px, 4vw, 32px);
@@ -123,28 +138,29 @@
       transform: translateY(-2px);
     }
 
+    /* CARD SELECIONADO: DOURADO (SEM VERDE FLUORESCENTE NO CARD) */
     .product-card.selected {
-      border-color: #00ff66;
-      background: #101e17;
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+      border-color: #ffb000;
+      background: #1c1810;
+      box-shadow: 0 0 15px rgba(255, 176, 0, 0.25);
     }
 
     .product-badge {
       position: absolute;
       top: 10px;
       right: 10px;
-      background: #ffb000;
-      color: #000;
+      background: #2d3545;
+      color: #a0aab2;
       font-size: 10px;
       font-weight: 800;
-      padding: 2px 8px;
+      padding: 3px 8px;
       border-radius: 4px;
       text-transform: uppercase;
     }
 
     .product-card.selected .product-badge {
-      background: #00ff66;
-      color: #000;
+      background: #ffb000;
+      color: #000000;
     }
 
     .product-img {
@@ -183,10 +199,6 @@
       color: #ffb000;
     }
 
-    .product-card.selected .product-price-tag strong {
-      color: #00ff66;
-    }
-
     /* CUSTOM SELECTION CHECKBOX */
     .selection-box {
       width: 100%;
@@ -203,8 +215,8 @@
     }
 
     .product-card.selected .selection-box {
-      background: #052e16;
-      border-color: #00ff66;
+      background: #332600;
+      border-color: #ffb000;
     }
 
     .custom-checkbox {
@@ -220,8 +232,8 @@
     }
 
     .product-card.selected .custom-checkbox {
-      background: #00ff66;
-      border-color: #00ff66;
+      background: #ffb000;
+      border-color: #ffb000;
     }
 
     .custom-checkbox::after {
@@ -244,16 +256,16 @@
       letter-spacing: 0.3px;
     }
 
-    /* 4. FLUORESCENT GREEN PROGRESS BAR SECTION (20 SECONDS) */
+    /* 4. FLUORESCENT GREEN PROGRESS BAR SECTION (A ÚNICA COSA VERDE FLUORESCENTE) */
     .progress-section {
       width: 100%;
       background: #14171d;
-      border: 1px solid #232936;
+      border: 1px solid #00ff66;
       border-radius: 10px;
       padding: 14px 16px;
       margin-bottom: 20px;
-      display: none; /* Exibida ao selecionar */
-      box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+      display: none; /* Exibida apenas ao selecionar */
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.25);
     }
 
     .progress-header {
@@ -279,11 +291,11 @@
 
     .progress-bar-bg {
       width: 100%;
-      height: 12px;
-      background: #090a0d;
-      border-radius: 6px;
+      height: 14px;
+      background: #050a07;
+      border-radius: 7px;
       overflow: hidden;
-      border: 1px solid rgba(0, 255, 102, 0.3);
+      border: 1px solid rgba(0, 255, 102, 0.4);
       position: relative;
     }
 
@@ -291,8 +303,8 @@
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #00b347, #00ff66, #b3ffcc);
-      box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
-      border-radius: 6px;
+      box-shadow: 0 0 15px #00ff66, 0 0 25px #00ff66;
+      border-radius: 7px;
       transition: width 0.1s linear;
     }
 
@@ -307,8 +319,8 @@
       justify-content: center;
       width: 100%;
       max-width: 550px;
-      background: linear-gradient(180deg, #00e65c 0%, #00993d 100%);
-      color: #ffffff;
+      background: linear-gradient(180deg, #ffc400 0%, #d49000 100%);
+      color: #000000;
       font-family: 'Poppins', sans-serif;
       font-size: 18px;
       font-weight: 900;
@@ -317,27 +329,27 @@
       text-transform: uppercase;
       padding: 16px 24px;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0, 255, 102, 0.4);
+      box-shadow: 0 4px 20px rgba(255, 176, 0, 0.4);
       cursor: pointer;
       transition: all 0.2s ease;
-      animation: pulse-green 2s infinite ease-in-out;
+      animation: pulse-gold 2s infinite ease-in-out;
       border: none;
     }
 
     .btn-cta-main:hover {
       transform: scale(1.02);
-      box-shadow: 0 6px 30px rgba(0, 255, 102, 0.6);
+      box-shadow: 0 6px 30px rgba(255, 176, 0, 0.6);
     }
 
-    @keyframes pulse-green {
+    @keyframes pulse-gold {
       0% {
-        box-shadow: 0 4px 15px rgba(0, 255, 102, 0.4);
+        box-shadow: 0 4px 15px rgba(255, 176, 0, 0.4);
       }
       50% {
-        box-shadow: 0 8px 30px rgba(0, 255, 102, 0.75);
+        box-shadow: 0 8px 30px rgba(255, 176, 0, 0.75);
       }
       100% {
-        box-shadow: 0 4px 15px rgba(0, 255, 102, 0.4);
+        box-shadow: 0 4px 15px rgba(255, 176, 0, 0.4);
       }
     }
 
@@ -384,18 +396,19 @@
 
     <!-- 2. HEADLINE SECTION -->
     <div class="header-box">
+      <div class="bonus-badge">🎁 VOCÊ ACABOU DE GANHAR 2 BÔNUS!</div>
       <h1 class="main-title">
         2 MANUSCRITOS NOVOS <span>APENAS PARA VOCÊ!</span>
       </h1>
       <p class="sub-title">Selecione abaixo quais manuscritos deseja adicionar ao seu pedido atual com 80% de desconto:</p>
     </div>
 
-    <!-- 3. PRODUCTS CARDS GRID (LADO A LADO) -->
+    <!-- 3. PRODUCTS CARDS GRID (SELEÇÃO INICIALMENTE DESATIVADA) -->
     <div class="products-grid">
       
-      <!-- CARD 1: CAFÉ COM SEU ANJO -->
-      <div class="product-card selected" id="card-1" onclick="toggleSelection(1)">
-        <span class="product-badge" id="badge-1">SELECIONADO</span>
+      <!-- CARD 1: CAFÉ COM SEU ANJO (DESSELECIONADO INICIALMENTE) -->
+      <div class="product-card" id="card-1" onclick="toggleSelection(1)">
+        <span class="product-badge" id="badge-1">DISPONÍVEL</span>
         <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo" class="product-img">
         <h2 class="product-title">MANUSCRITO<br>CAFÉ COM SEU ANJO</h2>
         <p class="product-desc">Ensina a sintonia matinal exata para alinhar sua frequência de bênçãos e paz espiritual todos os dias.</p>
@@ -403,13 +416,13 @@
         
         <div class="selection-box">
           <div class="custom-checkbox" id="chk-1"></div>
-          <span class="selection-label" id="lbl-1">ADICIONADO AO PEDIDO</span>
+          <span class="selection-label" id="lbl-1">CLIQUE PARA ADICIONAR</span>
         </div>
       </div>
 
-      <!-- CARD 2: GRIMÓRIO DE SÃO BENTO -->
-      <div class="product-card selected" id="card-2" onclick="toggleSelection(2)">
-        <span class="product-badge" id="badge-2">SELECIONADO</span>
+      <!-- CARD 2: GRIMÓRIO DE SÃO BENTO (DESSELECIONADO INICIALMENTE) -->
+      <div class="product-card" id="card-2" onclick="toggleSelection(2)">
+        <span class="product-badge" id="badge-2">DISPONÍVEL</span>
         <img src="img-grimorio-bento.png" alt="Grimório de São Bento" class="product-img">
         <h2 class="product-title">GRIMÓRIO DE<br>SÃO BENTO</h2>
         <p class="product-desc">O antídoto mais poderoso de blindagem espiritual contra inveja, feitiçaria e ataques invisíveis.</p>
@@ -417,13 +430,13 @@
         
         <div class="selection-box">
           <div class="custom-checkbox" id="chk-2"></div>
-          <span class="selection-label" id="lbl-2">ADICIONADO AO PEDIDO</span>
+          <span class="selection-label" id="lbl-2">CLIQUE PARA ADICIONAR</span>
         </div>
       </div>
 
     </div>
 
-    <!-- 4. FLUORESCENT GREEN PROGRESS BAR (20 SECONDS LOADING) -->
+    <!-- 4. FLUORESCENT GREEN PROGRESS BAR (DISPARADA AO SELECIONAR UM CARD) -->
     <div class="progress-section" id="progressSection">
       <div class="progress-header">
         <span class="progress-status-text" id="progressStatus">
@@ -439,7 +452,7 @@
     <!-- 5. CTA BUTTON & REFUSAL -->
     <div class="cta-container">
       <a href="https://checkout.kashpay.com.br/checkout/checkout-1789037509969" class="btn-cta-main" id="btnCta">
-        SIM! ADICIONAR SELECIONADOS AO MEU PEDIDO
+        ADICIONAR SELECIONADOS AO MEU PEDIDO
       </a>
       <a href="https://checkout.kashpay.com.br/checkout/checkout-1789037509969" class="no-thanks-link">
         Não, obrigado. Prefiro perder essa oportunidade única.
@@ -450,8 +463,9 @@
 
   <!-- INTERACTIVE JS FOR CARD SELECTION & 20-SECOND FLUORESCENT PROGRESS BAR -->
   <script>
-    let isSelected1 = true;
-    let isSelected2 = true;
+    // Inicia sem seleção para o visitante escolher livremente
+    let isSelected1 = false;
+    let isSelected2 = false;
     let progressTimer = null;
     let progressStartTime = null;
     const TOTAL_DURATION_MS = 20000; // 20 Segundos
@@ -464,7 +478,16 @@
       }
 
       updateCardsUI();
-      triggerProgressBar();
+
+      // Dispara a barra de 20s se houver ao menos 1 card selecionado
+      if (isSelected1 || isSelected2) {
+        triggerProgressBar();
+      } else {
+        // Esconde a barra se desmarcar todos
+        const progressSection = document.getElementById('progressSection');
+        progressSection.style.display = 'none';
+        if (progressTimer) cancelAnimationFrame(progressTimer);
+      }
     }
 
     function updateCardsUI() {
@@ -506,7 +529,7 @@
       progressSection.style.display = 'block';
       progressBarFill.style.width = '0%';
       progressPercent.innerText = '0%';
-      progressStatus.innerHTML = '⚡ Adicionando manuscrito ao seu pedido...';
+      progressStatus.innerHTML = '⚡ Adicionando item ao seu pedido...';
 
       if (progressTimer) {
         cancelAnimationFrame(progressTimer);
@@ -532,11 +555,6 @@
 
       progressTimer = requestAnimationFrame(animateProgress);
     }
-
-    // Inicia a barra de 20s automaticamente no carregamento inicial
-    window.addEventListener('DOMContentLoaded', () => {
-      triggerProgressBar();
-    });
   </script>
 </body>
 </html>
