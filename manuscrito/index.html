@@ -57,31 +57,205 @@
       padding: 15px 15px 40px 15px;
     }
 
-    /* 1. WARNING TOP BANNER COM CONTAGEM REGRESSIVA DE 3 MINUTOS */
-    .warning-banner {
-      width: 100%;
-      background-color: #d90429;
-      color: #ffffff;
-      padding: 9px 12px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      border-radius: 6px;
-      margin-bottom: 14px;
+    /* MODAL OVERLAY LOCK SCREEN */
+    body.modal-locked {
+      overflow: hidden !important;
     }
 
-    .timer-span {
-      background: #000000;
-      color: #10b981;
-      padding: 2px 8px;
-      border-radius: 4px;
-      margin-left: 6px;
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 7, 12, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 999999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 1;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .modal-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .modal-card {
+      background: #14171d;
+      border: 2px solid #0a934a;
+      box-shadow: 0 0 35px rgba(10, 147, 74, 0.45);
+      border-radius: 18px;
+      width: 100%;
+      max-width: 460px;
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      animation: modalPopIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes modalPopIn {
+      from {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    .modal-icon-badge {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .modal-headline {
       font-family: 'Poppins', sans-serif;
-      font-size: 14px;
+      font-size: clamp(16px, 4.2vw, 20px);
       font-weight: 900;
-      display: inline-block;
+      color: #ffb000;
+      text-transform: uppercase;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .modal-subtext {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 22px;
+    }
+
+    .input-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .modal-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: #0b0c10;
+      border: 1.5px solid #283040;
+      border-radius: 10px;
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .modal-input:focus {
+      border-color: #0a934a;
+      box-shadow: 0 0 10px rgba(10, 147, 74, 0.35);
+    }
+
+    .modal-input::placeholder {
+      color: #667085;
+    }
+
+    /* MESMA COR DO BOTÃO DE COMPRA (#0a934a) */
+    .modal-btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      background-color: #0a934a;
+      color: #ffffff;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 19px;
+      font-weight: 700;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(10, 147, 74, 0.4);
+      cursor: pointer;
+      border: none;
+      margin-top: 6px;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      animation: pulse-cta 1.8s infinite ease-in-out;
+    }
+
+    .modal-btn-submit:hover {
+      background-color: #0c9e50;
+      transform: scale(1.03);
+    }
+
+    /* CARREGAMENTO DE 30 SEGUNDOS */
+    .modal-loading-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 0;
+    }
+
+    .modal-spinner {
+      width: 54px;
+      height: 54px;
+      border: 5px solid rgba(10, 147, 74, 0.2);
+      border-top: 5px solid #10b981;
+      border-radius: 50%;
+      animation: spinLoader 1s linear infinite;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+      margin-bottom: 18px;
+    }
+
+    @keyframes spinLoader {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .loading-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      color: #10b981;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .loading-subtext {
+      font-size: 12px;
+      color: #9aa0a6;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .modal-progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: #030d07;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(10, 147, 74, 0.5);
+      margin-bottom: 8px;
+    }
+
+    .modal-progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #076d37, #0a934a, #10b981);
+      box-shadow: 0 0 12px rgba(10, 147, 74, 0.8);
+      border-radius: 6px;
+      transition: width 0.1s linear;
+    }
+
+    .modal-progress-info {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      font-size: 11px;
+      font-weight: 700;
+      color: #a0aab2;
     }
 
     /* 2. HEADLINE SECTION */
@@ -592,12 +766,46 @@
 </head>
 <body>
 
-  <div class="wrapper">
-    
-    <!-- 1. WARNING TOP BANNER COM CONTAGEM REGRESSIVA DE 3 MINUTOS -->
-    <div class="warning-banner">
-      ⚠️ NÃO FECHE ESSA PÁGINA OU SUA ORDEM FICARÁ INCOMPLETA — Aguarde: <span class="timer-span" id="topTimer">03:00</span>
+  <!-- MODAL OVERLAY CARD (CARD DE BLOQUEIO DE ACESSO) -->
+  <div class="modal-overlay" id="gateModalOverlay">
+    <div class="modal-card">
+      
+      <!-- ETAPA 1: FORMULÁRIO DE ENTRADA -->
+      <div class="modal-form-step" id="modalFormStep">
+        <div class="modal-icon-badge">🎁</div>
+        <h2 class="modal-headline">PARABÉNS POR DAR ESSE PASSO IMPORTANTE NA SUA VIDA</h2>
+        <p class="modal-subtext">INSIRA SEU EMAIL PARA LIBERAR O ACESSO</p>
+        
+        <form id="gateForm" onsubmit="handleGateSubmit(event)">
+          <div class="input-group">
+            <input type="email" id="userEmail" placeholder="Digite seu melhor e-mail..." class="modal-input" required>
+          </div>
+          <div class="input-group">
+            <input type="tel" id="userPhone" placeholder="Digite seu WhatsApp / Celular (opcional)..." class="modal-input">
+          </div>
+          <button type="submit" class="modal-btn-submit">ENVIAR</button>
+        </form>
+      </div>
+
+      <!-- ETAPA 2: CARREGAMENTO DE 30 SEGUNDOS COM ÍCONE DE CARREGANDO -->
+      <div class="modal-loading-step" id="modalLoadingStep" style="display: none;">
+        <div class="modal-spinner"></div>
+        <h3 class="loading-title">LIBERANDO SEU ACESSO...</h3>
+        <p class="loading-subtext">Sua área exclusiva está sendo configurada e seus bônus estão sendo liberados. Por favor, aguarde.</p>
+        
+        <div class="modal-progress-bar-bg">
+          <div class="modal-progress-bar-fill" id="modalProgressFill"></div>
+        </div>
+        <div class="modal-progress-info">
+          <span>Status: Incorporando Bônus...</span>
+          <span id="modalProgressPercent">0%</span>
+        </div>
+      </div>
+
     </div>
+  </div>
+
+  <div class="wrapper">
 
     <!-- 2. HEADLINE SECTION -->
     <div class="header-box">
@@ -710,23 +918,48 @@
 
   </div>
 
-  <!-- INTERACTIVE JS: TIMER DE 3 MINUTOS, SELEÇÃO E BARRAS DE 35 SEGUNDOS -->
+  <!-- INTERACTIVE JS: MODAL GATE LOCK, SELEÇÃO E BARRAS DE 35 SEGUNDOS -->
   <script>
-    // 1. CONTAGEM REGRESSIVA DE 3 MINUTOS (TOP BANNER)
-    let totalSeconds = 180; // 3 minutos
-    const topTimerEl = document.getElementById('topTimer');
+    // 1. BLOQUEIO DE TELA INICIAL (MODAL GATE OVERLAY)
+    document.body.classList.add('modal-locked');
 
-    const countdownInterval = setInterval(() => {
-      if (totalSeconds <= 0) {
-        clearInterval(countdownInterval);
-        topTimerEl.innerText = '00:00';
-        return;
+    function handleGateSubmit(event) {
+      event.preventDefault();
+      const emailInput = document.getElementById('userEmail');
+      if (!emailInput || !emailInput.value.trim()) return;
+
+      // Oculta formulário de dados e exibe o indicador de carregando de 30 segundos
+      document.getElementById('modalFormStep').style.display = 'none';
+      document.getElementById('modalLoadingStep').style.display = 'flex';
+
+      const DURATION_30S_MS = 30000; // 30 Segundos
+      const startTime = performance.now();
+      const fillEl = document.getElementById('modalProgressFill');
+      const percentEl = document.getElementById('modalProgressPercent');
+
+      function animateGateLoading(currentTime) {
+        const elapsed = currentTime - startTime;
+        const pct = Math.min(100, Math.floor((elapsed / DURATION_30S_MS) * 100));
+        fillEl.style.width = pct + '%';
+        percentEl.innerText = pct + '%';
+
+        if (elapsed < DURATION_30S_MS) {
+          requestAnimationFrame(animateGateLoading);
+        } else {
+          fillEl.style.width = '100%';
+          percentEl.innerText = '100%';
+
+          // Após 30 segundos, esconde o modal overlay e libera a página do upsell
+          setTimeout(() => {
+            const overlay = document.getElementById('gateModalOverlay');
+            overlay.classList.add('hidden');
+            document.body.classList.remove('modal-locked');
+          }, 300);
+        }
       }
-      totalSeconds--;
-      const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
-      const s = String(totalSeconds % 60).padStart(2, '0');
-      topTimerEl.innerText = `${m}:${s}`;
-    }, 1000);
+
+      requestAnimationFrame(animateGateLoading);
+    }
 
     // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 35 SEGUNDOS
     let isSelected1 = false;
