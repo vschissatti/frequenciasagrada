@@ -328,5 +328,23 @@
     </div>
 
   </div>
+  <!-- Script Automático de Repasse de UTMs para os Links de Checkout -->
+  <script>
+    (function() {
+      const currentParams = window.location.search;
+      if (!currentParams) return;
+      const searchParams = new URLSearchParams(currentParams);
+      
+      document.querySelectorAll('a[href*="checkout.kashpay.com.br"]').forEach(link => {
+        try {
+          const url = new URL(link.href);
+          searchParams.forEach((value, key) => {
+            url.searchParams.set(key, value);
+          });
+          link.href = url.toString();
+        } catch(e) {}
+      });
+    })();
+  </script>
 </body>
 </html>

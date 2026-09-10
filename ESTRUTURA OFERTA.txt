@@ -1,0 +1,27 @@
+PIXEL 33 HZ
+
+
+token:
+EAGJLwEWBtYoBSd4AWLiIHEYbVFaRfpH2q5PegzIvXwGT0mnDu8FZBL0AZCD4NFQZBcWmoCrGRI8tINLIvDDoxZChAxmO1I0YnZA8t8tbI2itCQFTTID2y8l7RTNyhNL9xqBza3vVSQcvqVcUvGhC9yAxtth4tFmZCfZBnKuY1TlHX2yaXbtF1a58IbcQ0fZB2aXxWwZDZD
+
+
+
+2. Mapeamento de Links de Todas as Páginas da Oferta
+Considerando o seu domínio apontado para a raiz da hospedagem (ex: https://www.aulasagrada.com):
+
+⚪ White Page (Página Limpa / Safe Page):
+
+https://www.aulasagrada.com/ (Servida automaticamente pelo Cloaker para bots, moderadores do Meta e visitas diretas sem parâmetro)
+https://www.aulasagrada.com/safe.html
+https://www.aulasagrada.com/aoracaosecreta/
+🔴 Black Page (Money Page / VSL do Epstein):
+
+https://www.aulasagrada.com/?src=vsl (Link oficial para usar nas campanhas do Meta Ads / UTMs)
+https://www.aulasagrada.com/?preview=vsl (Seu link de teste/preview para você e sua equipe acessarem diretamente)
+https://www.aulasagrada.com/black.html
+📈 Upsell 1 (Manuscritos Sagrados):
+
+https://www.aulasagrada.com/manuscrito/
+🎉 Página de Obrigado (Thank You Page):
+
+https://www.aulasagrada.com/obrigado/

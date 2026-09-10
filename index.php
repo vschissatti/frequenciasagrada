@@ -1,7 +1,7 @@
 <?php
 /**
- * MOTOR UNIVERSAL DE CLOAKING SERVER-SIDE (PRO ENGINE)
- * Detecção por Inteligência de IP, Reverse DNS, ASN de Datacenters & User-Agent
+ * MOTOR UNIVERSAL DE CLOAKING SERVER-SIDE (PRO ENGINE MAX)
+ * Detecção por Inteligência de IP, Reverse DNS, Headers de Navegador Real & User-Agent
  * 
  * ESTRUTURA UNIVERSAL:
  *  - safe.html  -> Sua Página Limpa (Safe Page)
@@ -21,9 +21,8 @@ if (!file_exists($SAFE_PAGE) && file_exists(__DIR__ . '/aoracaosecreta/index.htm
 }
 
 // -------------------------------------------------------------
-// 2. MODO BYPASS / PREVIEW DE ADMIN (Senha para você testar a VSL)
+// 2. MODO BYPASS / PREVIEW DE ADMIN (Acesse: ?preview=vsl)
 // -------------------------------------------------------------
-// Acesse: seusite.com/?preview=vsl para ver a VSL direto sem filtros
 if (isset($_GET['preview']) && $_GET['preview'] === 'vsl') {
     if (file_exists($BLACK_PAGE)) {
         include $BLACK_PAGE;
@@ -32,7 +31,7 @@ if (isset($_GET['preview']) && $_GET['preview'] === 'vsl') {
 }
 
 // -------------------------------------------------------------
-// 3. CAPTURA DO IP REAL DO VISITANTE (SUPORTA CLOUDFLARE E PROXIES)
+// 3. CAPTURA DO IP REAL E CABEÇALHOS DO VISITANTE
 // -------------------------------------------------------------
 function getVisitorIP() {
     if (!empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
@@ -45,37 +44,48 @@ function getVisitorIP() {
     return $_SERVER['REMOTE_ADDR'] ?? '';
 }
 
-$visitorIP = getVisitorIP();
-$userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$visitorIP      = getVisitorIP();
+$userAgent      = $_SERVER['HTTP_USER_AGENT'] ?? '';
+$acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'] ?? '';
 
 $isBot = false;
 $blockReason = '';
 
 // -------------------------------------------------------------
-// 4. DETECÇÃO 1: USER-AGENTS DE BOTS, CRAWLERS E CRAWLERS HEADLESS
+// 4. DETECÇÃO 1: FALTANDO ACCEPT-LANGUAGE (NAVEGADOR REAL SEMPRE ENVIA)
 // -------------------------------------------------------------
-$botUserAgents = [
-    'facebookexternalhit', 'facebot', 'metainspector', 'googlebot', 
-    'bingbot', 'yandexbot', 'baiduspider', 'python', 'curl', 'wget',
-    'headlesschrome', 'bytespider', 'telegrambot', 'twitterbot', 
-    'linkedinbot', 'whatsapp', 'phantomjs', 'selenium', 'puppeteer',
-    'semrushbot', 'ahrefsbot', 'mj12bot', 'screaming frog'
-];
+// Navegadores de celular/desktop reais sempre enviam o idioma.
+// Bots e ferramentas de moderação automatizadas em servidores raramente enviam.
+if (empty($acceptLanguage)) {
+    $isBot = true;
+    $blockReason = "Faltando cabeçalho HTTP Accept-Language";
+}
 
-$lowerUA = strtolower($userAgent);
-foreach ($botUserAgents as $botUA) {
-    if (strpos($lowerUA, $botUA) !== false) {
-        $isBot = true;
-        $blockReason = "User-Agent Detectado: " . $botUA;
-        break;
+// -------------------------------------------------------------
+// 5. DETECÇÃO 2: USER-AGENTS DE BOTS, CRAWLERS E SCRAPERS
+// -------------------------------------------------------------
+if (!$isBot) {
+    $botUserAgents = [
+        'facebookexternalhit', 'facebot', 'metainspector', 'googlebot', 
+        'bingbot', 'yandexbot', 'baiduspider', 'python', 'curl', 'wget',
+        'headlesschrome', 'bytespider', 'telegrambot', 'twitterbot', 
+        'linkedinbot', 'whatsapp', 'phantomjs', 'selenium', 'puppeteer',
+        'semrushbot', 'ahrefsbot', 'mj12bot', 'screaming frog'
+    ];
+
+    $lowerUA = strtolower($userAgent);
+    foreach ($botUserAgents as $botUA) {
+        if (strpos($lowerUA, $botUA) !== false) {
+            $isBot = true;
+            $blockReason = "User-Agent Detectado: " . $botUA;
+            break;
+        }
     }
 }
 
 // -------------------------------------------------------------
-// 5. DETECÇÃO 2: REVERSE DNS (DESCOBRE SE O IP VEM DE DATACENTER/NUVEM)
+// 6. DETECÇÃO 3: REVERSE DNS (IDENTIFICA DATACENTERS EM TEMPO REAL)
 // -------------------------------------------------------------
-// O Reverse DNS consulta a quem pertence o IP diretamente na rede.
-// Robôs do Meta, AWS, Google Cloud, DigitalOcean possuem nomes de servidor claros.
 if (!$isBot && filter_var($visitorIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
     $hostName = @gethostbyaddr($visitorIP);
     if ($hostName && $hostName !== $visitorIP) {
@@ -97,22 +107,22 @@ if (!$isBot && filter_var($visitorIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
 }
 
 // -------------------------------------------------------------
-// 6. DETECÇÃO 3: FAIXAS DE IP CIDR CONHECIDAS DA META / FACEBOOK
+// 7. DETECÇÃO 4: FAIXAS DE IP CIDR CONHECIDAS DA META / FACEBOOK
 // -------------------------------------------------------------
-$metaIpRanges = [
-    '31.13.24.0/21', '31.13.64.0/18', '45.64.40.0/22', '66.220.144.0/20',
-    '69.63.176.0/20', '69.171.224.0/19', '74.119.76.0/22', '103.4.96.0/22',
-    '129.134.0.0/16', '157.240.0.0/16', '173.252.64.0/18', '179.60.192.0/22',
-    '185.60.216.0/22', '204.15.20.0/22'
-];
-
-function checkCIDR($ip, $cidr) {
-    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) return false;
-    list($subnet, $mask) = explode('/', $cidr);
-    return (ip2long($ip) & ~((1 << (32 - (int)$mask)) - 1)) == ip2long($subnet);
-}
-
 if (!$isBot && filter_var($visitorIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+    $metaIpRanges = [
+        '31.13.24.0/21', '31.13.64.0/18', '45.64.40.0/22', '66.220.144.0/20',
+        '69.63.176.0/20', '69.171.224.0/19', '74.119.76.0/22', '103.4.96.0/22',
+        '129.134.0.0/16', '157.240.0.0/16', '173.252.64.0/18', '179.60.192.0/22',
+        '185.60.216.0/22', '204.15.20.0/22'
+    ];
+
+    function checkCIDR($ip, $cidr) {
+        if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) return false;
+        list($subnet, $mask) = explode('/', $cidr);
+        return (ip2long($ip) & ~((1 << (32 - (int)$mask)) - 1)) == ip2long($subnet);
+    }
+
     foreach ($metaIpRanges as $range) {
         if (checkCIDR($visitorIP, $range)) {
             $isBot = true;
@@ -123,11 +133,8 @@ if (!$isBot && filter_var($visitorIP, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
 }
 
 // -------------------------------------------------------------
-// 7. DECISÃO FINAL DE ENTREGA DA PÁGINA (Sempre resposta 200 OK)
+// 8. DECISÃO FINAL DE ENTREGA DA PÁGINA (RESPOSTA 200 OK)
 // -------------------------------------------------------------
-
-// Regra de Ouro: SE FOR BOT OU DATACENTER, CAI NA SAFE PAGE INDEPENDENTE DE QUALQUER COISA.
-// Se não for bot, mas não tiver parâmetros na URL, também cai na safe page (para evitar acessos diretos).
 $hasParam = !empty($_GET);
 
 if ($isBot || !$hasParam) {
