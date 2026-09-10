@@ -30,7 +30,7 @@
   <!-- Google Fonts: Poppins, Montserrat, Roboto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@600;700;800;900&family=Roboto:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -43,236 +43,330 @@
       width: 100%;
       min-height: 100vh;
       font-family: 'Roboto', sans-serif;
-      background-color: #ebebeb;
-      color: #333;
+      background-color: #0b0c10;
+      color: #ffffff;
       overflow-x: hidden;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 15px 15px 40px 15px;
     }
 
     /* 1. WARNING TOP BANNER */
     .warning-banner {
       width: 100%;
-      background-color: #ffffff;
-      padding: 12px 16px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .warning-banner p {
-      color: #003671;
-      font-family: 'Roboto', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* 2. HEADLINE SECTION */
-    .headline-section {
-      width: 100%;
-      background-color: #000000;
-      padding: 32px 20px;
-      text-align: center;
-    }
-
-    .headline-section h1 {
+      background-color: #d90429;
       color: #ffffff;
-      font-family: 'Poppins', sans-serif;
-      font-size: 38px;
+      padding: 8px 12px;
+      text-align: center;
+      font-size: 13px;
       font-weight: 800;
-      line-height: 1.2;
-      text-transform: uppercase;
-    }
-
-    /* 3. SUB-HEADLINE BANNER */
-    .subheadline-banner {
-      width: 100%;
-      background: linear-gradient(80deg, #000000 0%, #3e3e3e 100%);
-      padding: 14px 20px;
-      text-align: center;
-    }
-
-    .subheadline-banner h2 {
-      color: #e6e6e6;
-      font-family: 'Roboto', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
       letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: 6px;
+      margin-bottom: 12px;
     }
 
-    /* 4. PRODUCT TITLE SECTIONS */
-    .product-title-container {
-      width: 100%;
-      padding: 30px 20px 15px 20px;
+    /* 2. HEADLINE & SUBHEADLINE */
+    .header-box {
       text-align: center;
+      margin-bottom: 20px;
     }
 
-    .product-title-container p {
+    .main-title {
       font-family: 'Poppins', sans-serif;
-      font-size: 36px;
+      font-size: clamp(20px, 4vw, 32px);
       font-weight: 900;
-      line-height: 1.2;
-      color: #000000;
+      line-height: 1.25;
+      color: #ffffff;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .main-title span {
+      color: #ffb000;
+    }
+
+    .sub-title {
+      font-size: 14px;
+      color: #a0aab2;
+      font-weight: 500;
+    }
+
+    /* 3. TWO PRODUCTS CARDS (SIDE-BY-SIDE GRID) */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .product-card {
+      background: #14171d;
+      border: 2px solid #232936;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      border-color: #ffb000;
+      transform: translateY(-2px);
+    }
+
+    .product-card.selected {
+      border-color: #00ff66;
+      background: #101e17;
+      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ffb000;
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 4px;
       text-transform: uppercase;
     }
 
-    .product-title-container p span {
-      color: #004aad;
+    .product-card.selected .product-badge {
+      background: #00ff66;
+      color: #000;
     }
 
-    /* CTA BUTTON STYLING */
-    .cta-wrapper {
+    .product-img {
       width: 100%;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: center;
+      max-width: 220px;
+      height: auto;
+      object-fit: contain;
+      margin: 10px 0;
     }
 
-    .btn-cta {
-      display: inline-block;
-      width: 100%;
-      max-width: 480px;
-      background-color: #249e3d;
-      color: #ffffff;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 17px;
+    .product-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
       font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .product-desc {
+      font-size: 12px;
+      color: #9aa0a6;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .product-price-tag {
+      font-size: 13px;
+      color: #cccccc;
+      margin-bottom: 12px;
+    }
+
+    .product-price-tag strong {
+      font-size: 18px;
+      color: #ffb000;
+    }
+
+    .product-card.selected .product-price-tag strong {
+      color: #00ff66;
+    }
+
+    /* CUSTOM SELECTION CHECKBOX */
+    .selection-box {
+      width: 100%;
+      background: #1f2532;
+      border: 1px solid #333d52;
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .product-card.selected .selection-box {
+      background: #052e16;
+      border-color: #00ff66;
+    }
+
+    .custom-checkbox {
+      width: 22px;
+      height: 22px;
+      border: 2px solid #666;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .product-card.selected .custom-checkbox {
+      background: #00ff66;
+      border-color: #00ff66;
+    }
+
+    .custom-checkbox::after {
+      content: '✓';
+      font-size: 15px;
+      font-weight: 900;
+      color: #000000;
+      display: none;
+    }
+
+    .product-card.selected .custom-checkbox::after {
+      display: block;
+    }
+
+    .selection-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* 4. FLUORESCENT GREEN PROGRESS BAR SECTION (20 SECONDS) */
+    .progress-section {
+      width: 100%;
+      background: #14171d;
+      border: 1px solid #232936;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      display: none; /* Exibida ao selecionar */
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.15);
+    }
+
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .progress-status-text {
+      color: #00ff66;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .progress-percent-text {
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 12px;
+      background: #090a0d;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 255, 102, 0.3);
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #00b347, #00ff66, #b3ffcc);
+      box-shadow: 0 0 12px #00ff66, 0 0 20px #00ff66;
+      border-radius: 6px;
+      transition: width 0.1s linear;
+    }
+
+    /* 5. CTA SECTION */
+    .cta-container {
+      text-align: center;
+    }
+
+    .btn-cta-main {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 550px;
+      background: linear-gradient(180deg, #00e65c 0%, #00993d 100%);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
       text-align: center;
       text-decoration: none;
       text-transform: uppercase;
       padding: 16px 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(36, 158, 61, 0.4);
-      animation: pulse-cta 2s infinite linear;
-      transition: background-color 0.2s ease;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 255, 102, 0.4);
       cursor: pointer;
+      transition: all 0.2s ease;
+      animation: pulse-green 2s infinite ease-in-out;
+      border: none;
     }
 
-    .btn-cta:hover {
-      background-color: #1e8733;
+    .btn-cta-main:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 30px rgba(0, 255, 102, 0.6);
     }
 
-    @keyframes pulse-cta {
+    @keyframes pulse-green {
       0% {
-        transform: scale(1);
-        box-shadow: 0 4px 15px rgba(36, 158, 61, 0.4);
+        box-shadow: 0 4px 15px rgba(0, 255, 102, 0.4);
       }
       50% {
-        transform: scale(1.04);
-        box-shadow: 0 8px 25px rgba(36, 158, 61, 0.7);
+        box-shadow: 0 8px 30px rgba(0, 255, 102, 0.75);
       }
       100% {
-        transform: scale(1);
-        box-shadow: 0 4px 15px rgba(36, 158, 61, 0.4);
+        box-shadow: 0 4px 15px rgba(0, 255, 102, 0.4);
       }
     }
 
-    /* PRODUCT MOCKUP IMAGE CONTAINER */
-    .product-image-container {
-      width: 100%;
-      padding: 20px 20px 60px 20px;
-      text-align: center;
+    .no-thanks-link {
+      display: block;
+      margin-top: 14px;
+      font-size: 12px;
+      color: #667085;
+      text-decoration: underline;
+      transition: color 0.2s ease;
     }
 
-    .product-image-container img {
-      max-width: 450px;
-      width: 100%;
-      height: auto;
-      display: inline-block;
+    .no-thanks-link:hover {
+      color: #a0aab2;
     }
 
-    /* 5. OPPORTUNITY BAR */
-    .opportunity-bar {
-      width: 100%;
-      background-color: #000000;
-      padding: 24px 20px;
-      text-align: center;
-    }
-
-    .opportunity-bar h2 {
-      color: #ffffff;
-      font-family: 'Poppins', sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      line-height: 1.3;
-    }
-
-    /* 6. OFFER CARD BOX */
-    .offer-box-section {
-      width: 100%;
-      padding: 40px 20px;
-      display: flex;
-      justify-content: center;
-    }
-
-    .offer-box {
-      width: 100%;
-      max-width: 650px;
-      background: linear-gradient(80deg, #000000 0%, #272727 100%);
-      border: 2px solid #ffb000;
-      border-radius: 10px;
-      padding: 30px 20px 40px 20px;
-      text-align: center;
-      box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .offer-box-title {
-      color: #ffb000;
-      font-family: 'Poppins', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      line-height: 1.2;
-    }
-
-    .offer-box-image img {
-      max-width: 420px;
-      width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-    }
-
-    .price-old {
-      color: #ff2a2a;
-      font-family: 'Poppins', sans-serif;
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -2px;
-      margin-bottom: 5px;
-    }
-
-    .price-new {
-      color: #ffb000;
-      font-family: 'Poppins', sans-serif;
-      font-size: 52px;
-      font-weight: 800;
-      letter-spacing: -2px;
-      line-height: 1.1;
-    }
-
-    /* MOBILE RESPONSIVENESS */
-    @media (max-width: 600px) {
-      .headline-section h1 {
-        font-size: 28px;
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 650px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
-      .product-title-container p {
-        font-size: 28px;
+      .product-card {
+        padding: 14px;
       }
-      .opportunity-bar h2 {
-        font-size: 18px;
-        line-height: 1.3;
+      .product-img {
+        max-width: 170px;
       }
-      .offer-box-title {
-        font-size: 22px;
-      }
-      .price-old {
-        font-size: 36px;
-      }
-      .price-new {
-        font-size: 42px;
-      }
-      .btn-cta {
+      .btn-cta-main {
         font-size: 15px;
         padding: 14px 18px;
       }
@@ -281,71 +375,168 @@
 </head>
 <body>
 
-  <!-- 1. WARNING TOP BANNER -->
-  <div class="warning-banner">
-    <p>NÃO FECHE ESSA PÁGINA OU NUNCA MAIS VERÁ O QUE TEM AQUI PARA VOCÊ</p>
-  </div>
+  <div class="wrapper">
+    
+    <!-- 1. WARNING TOP BANNER -->
+    <div class="warning-banner">
+      ⚠️ NÃO FECHE ESSA PÁGINA OU SUA ORDEM FICARÁ INCOMPLETA
+    </div>
 
-  <!-- 2. MAIN HEADLINE -->
-  <div class="headline-section">
-    <h1>2 MANUSCRITOS NOVOS APENAS PARA VOCÊ!</h1>
-  </div>
+    <!-- 2. HEADLINE SECTION -->
+    <div class="header-box">
+      <h1 class="main-title">
+        2 MANUSCRITOS NOVOS <span>APENAS PARA VOCÊ!</span>
+      </h1>
+      <p class="sub-title">Selecione abaixo quais manuscritos deseja adicionar ao seu pedido atual com 80% de desconto:</p>
+    </div>
 
-  <!-- 3. SUB-HEADLINE BANNER -->
-  <div class="subheadline-banner">
-    <h2>ESSES 2 MANUSCRITOS NÃO ESTÃO DISPONÍVEIS FORA DESSA PÁGINA AQUI</h2>
-  </div>
-
-  <!-- 4. PRODUCT 1: CAFÉ COM SEU ANJO -->
-  <div class="product-title-container">
-    <p>MANUSCRITO<br><span>CAFÉ COM SEU ANJO</span></p>
-  </div>
-
-  <div class="cta-wrapper">
-    <a href="#" class="btn-cta">EU QUERO RECEBER ESSAS BÊNÇÃOS</a>
-  </div>
-
-  <div class="product-image-container">
-    <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo">
-  </div>
-
-  <!-- 5. PRODUCT 2: GRIMÓRIO DE SÃO BENTO -->
-  <div class="product-title-container">
-    <p>GRIMÓRIO DE<br><span>SÃO BENTO</span></p>
-  </div>
-
-  <div class="product-image-container">
-    <img src="img-grimorio-bento.png" alt="Grimório de São Bento">
-  </div>
-
-  <!-- 6. OPPORTUNITY BAR -->
-  <div class="opportunity-bar">
-    <h2>Uma única oportunidade de receber junto com os Pendrives sagrados</h2>
-  </div>
-
-  <!-- 7. OFFER CARD CONTAINER BOX -->
-  <div class="offer-box-section">
-    <div class="offer-box">
-      <h2 class="offer-box-title">2 MANUSCRITOS SAGRADOS</h2>
+    <!-- 3. PRODUCTS CARDS GRID (LADO A LADO) -->
+    <div class="products-grid">
       
-      <div class="offer-box-image">
-        <img src="img-bundle.png" alt="2 Manuscritos Sagrados">
+      <!-- CARD 1: CAFÉ COM SEU ANJO -->
+      <div class="product-card selected" id="card-1" onclick="toggleSelection(1)">
+        <span class="product-badge" id="badge-1">SELECIONADO</span>
+        <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo" class="product-img">
+        <h2 class="product-title">MANUSCRITO<br>CAFÉ COM SEU ANJO</h2>
+        <p class="product-desc">Ensina a sintonia matinal exata para alinhar sua frequência de bênçãos e paz espiritual todos os dias.</p>
+        <p class="product-price-tag">Por apenas <strong>12x R$ 8,97</strong></p>
+        
+        <div class="selection-box">
+          <div class="custom-checkbox" id="chk-1"></div>
+          <span class="selection-label" id="lbl-1">ADICIONADO AO PEDIDO</span>
+        </div>
       </div>
 
-      <div class="price-old">
-        <s>R$ 699,00</s>
+      <!-- CARD 2: GRIMÓRIO DE SÃO BENTO -->
+      <div class="product-card selected" id="card-2" onclick="toggleSelection(2)">
+        <span class="product-badge" id="badge-2">SELECIONADO</span>
+        <img src="img-grimorio-bento.png" alt="Grimório de São Bento" class="product-img">
+        <h2 class="product-title">GRIMÓRIO DE<br>SÃO BENTO</h2>
+        <p class="product-desc">O antídoto mais poderoso de blindagem espiritual contra inveja, feitiçaria e ataques invisíveis.</p>
+        <p class="product-price-tag">Por apenas <strong>12x R$ 8,97</strong></p>
+        
+        <div class="selection-box">
+          <div class="custom-checkbox" id="chk-2"></div>
+          <span class="selection-label" id="lbl-2">ADICIONADO AO PEDIDO</span>
+        </div>
       </div>
 
-      <div class="price-new">
-        12x de R$ 8,97
+    </div>
+
+    <!-- 4. FLUORESCENT GREEN PROGRESS BAR (20 SECONDS LOADING) -->
+    <div class="progress-section" id="progressSection">
+      <div class="progress-header">
+        <span class="progress-status-text" id="progressStatus">
+          ⚡ Adicionando manuscrito ao seu pedido...
+        </span>
+        <span class="progress-percent-text" id="progressPercent">0%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
       </div>
     </div>
+
+    <!-- 5. CTA BUTTON & REFUSAL -->
+    <div class="cta-container">
+      <a href="https://checkout.kashpay.com.br/checkout/checkout-1789037509969" class="btn-cta-main" id="btnCta">
+        SIM! ADICIONAR SELECIONADOS AO MEU PEDIDO
+      </a>
+      <a href="https://checkout.kashpay.com.br/checkout/checkout-1789037509969" class="no-thanks-link">
+        Não, obrigado. Prefiro perder essa oportunidade única.
+      </a>
+    </div>
+
   </div>
 
-  <!-- 8. BOTTOM CTA BUTTON -->
-  <div class="cta-wrapper" style="padding-bottom: 50px;">
-    <a href="#" class="btn-cta">EU QUERO RECEBER ESSAS BÊNÇÃOS</a>
-  </div>
+  <!-- INTERACTIVE JS FOR CARD SELECTION & 20-SECOND FLUORESCENT PROGRESS BAR -->
+  <script>
+    let isSelected1 = true;
+    let isSelected2 = true;
+    let progressTimer = null;
+    let progressStartTime = null;
+    const TOTAL_DURATION_MS = 20000; // 20 Segundos
 
+    function toggleSelection(cardNum) {
+      if (cardNum === 1) {
+        isSelected1 = !isSelected1;
+      } else if (cardNum === 2) {
+        isSelected2 = !isSelected2;
+      }
+
+      updateCardsUI();
+      triggerProgressBar();
+    }
+
+    function updateCardsUI() {
+      // Card 1 UI
+      const card1 = document.getElementById('card-1');
+      const badge1 = document.getElementById('badge-1');
+      const lbl1 = document.getElementById('lbl-1');
+      if (isSelected1) {
+        card1.classList.add('selected');
+        badge1.innerText = 'SELECIONADO';
+        lbl1.innerText = 'ADICIONADO AO PEDIDO';
+      } else {
+        card1.classList.remove('selected');
+        badge1.innerText = 'DISPONÍVEL';
+        lbl1.innerText = 'CLIQUE PARA ADICIONAR';
+      }
+
+      // Card 2 UI
+      const card2 = document.getElementById('card-2');
+      const badge2 = document.getElementById('badge-2');
+      const lbl2 = document.getElementById('lbl-2');
+      if (isSelected2) {
+        card2.classList.add('selected');
+        badge2.innerText = 'SELECIONADO';
+        lbl2.innerText = 'ADICIONADO AO PEDIDO';
+      } else {
+        card2.classList.remove('selected');
+        badge2.innerText = 'DISPONÍVEL';
+        lbl2.innerText = 'CLIQUE PARA ADICIONAR';
+      }
+    }
+
+    function triggerProgressBar() {
+      const progressSection = document.getElementById('progressSection');
+      const progressBarFill = document.getElementById('progressBarFill');
+      const progressPercent = document.getElementById('progressPercent');
+      const progressStatus = document.getElementById('progressStatus');
+
+      progressSection.style.display = 'block';
+      progressBarFill.style.width = '0%';
+      progressPercent.innerText = '0%';
+      progressStatus.innerHTML = '⚡ Adicionando manuscrito ao seu pedido...';
+
+      if (progressTimer) {
+        cancelAnimationFrame(progressTimer);
+      }
+
+      progressStartTime = performance.now();
+
+      function animateProgress(currentTime) {
+        const elapsedTime = currentTime - progressStartTime;
+        const percent = Math.min(100, Math.floor((elapsedTime / TOTAL_DURATION_MS) * 100));
+
+        progressBarFill.style.width = percent + '%';
+        progressPercent.innerText = percent + '%';
+
+        if (elapsedTime < TOTAL_DURATION_MS) {
+          progressTimer = requestAnimationFrame(animateProgress);
+        } else {
+          progressBarFill.style.width = '100%';
+          progressPercent.innerText = '100%';
+          progressStatus.innerHTML = '✅ Item(ns) confirmado(s) e reservado(s) com sucesso!';
+        }
+      }
+
+      progressTimer = requestAnimationFrame(animateProgress);
+    }
+
+    // Inicia a barra de 20s automaticamente no carregamento inicial
+    window.addEventListener('DOMContentLoaded', () => {
+      triggerProgressBar();
+    });
+  </script>
 </body>
 </html>
