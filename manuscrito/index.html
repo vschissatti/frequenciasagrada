@@ -966,7 +966,7 @@
       }, 1000);
     }
 
-    // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 10 SEGUNDOS
+    // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 5 SEGUNDOS
     let isSelected1 = false;
     let isSelected2 = false;
 
@@ -976,7 +976,7 @@
     let timer2 = null;
     let startTime2 = null;
 
-    const DURATION_10S_MS = 10000; // 10 Segundos
+    const DURATION_5S_MS = 5000; // 5 Segundos
 
     function toggleSelection(cardNum) {
       if (cardNum === 1) {
@@ -1047,11 +1047,11 @@
 
         function animate1(currentTime) {
           const elapsed = currentTime - startTime1;
-          const pct = Math.min(100, Math.floor((elapsed / DURATION_10S_MS) * 100));
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_5S_MS) * 100));
           fill.style.width = pct + '%';
           percent.innerText = pct + '%';
 
-          if (elapsed < DURATION_10S_MS) {
+          if (elapsed < DURATION_5S_MS) {
             timer1 = requestAnimationFrame(animate1);
           } else {
             fill.style.width = '100%';
@@ -1067,11 +1067,11 @@
 
         function animate2(currentTime) {
           const elapsed = currentTime - startTime2;
-          const pct = Math.min(100, Math.floor((elapsed / DURATION_10S_MS) * 100));
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_5S_MS) * 100));
           fill.style.width = pct + '%';
           percent.innerText = pct + '%';
 
-          if (elapsed < DURATION_10S_MS) {
+          if (elapsed < DURATION_5S_MS) {
             timer2 = requestAnimationFrame(animate2);
           } else {
             fill.style.width = '100%';
