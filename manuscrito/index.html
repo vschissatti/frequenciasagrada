@@ -127,15 +127,15 @@
     }
 
     .product-card:hover {
-      border-color: #ffb000;
+      border-color: #384256;
       transform: translateY(-2px);
     }
 
-    /* CARD SELECIONADO: DESTAQUE DOURADO */
+    /* CARD SELECIONADO: MANTEIM BORDAS DISCRETAS NEUTRAS (SEM BORDA AMARELA) */
     .product-card.selected {
-      border-color: #ffb000;
-      background: #1c1810;
-      box-shadow: 0 0 15px rgba(255, 176, 0, 0.25);
+      border-color: #2e3748;
+      background: #14171d;
+      box-shadow: none;
     }
 
     .product-badge {
@@ -152,7 +152,7 @@
     }
 
     .product-card.selected .product-badge {
-      background: #ffb000;
+      background: #00ff66;
       color: #000000;
     }
 
@@ -247,7 +247,7 @@
       letter-spacing: 0.3px;
     }
 
-    /* BARRA DE PROGRESSO VERDE FLUORESCENTE AO LADO DA CAIXINHA */
+    /* BARRA DE PROGRESSO VERDE FLUORESCENTE DIRETA AO LADO DA CAIXINHA */
     .inline-progress-box {
       width: 100%;
       display: none;
@@ -462,7 +462,7 @@
 
   </div>
 
-  <!-- INTERACTIVE JS: SELEÇÃO INDIVIDUAL E BARRAS VERDE FLUORESCENTE DE 20 SEGUNDOS AO LADO DA CAIXINHA -->
+  <!-- INTERACTIVE JS: SELEÇÃO INDIVIDUAL E BARRAS VERDE FLUORESCENTE DE 35 SEGUNDOS -->
   <script>
     let isSelected1 = false;
     let isSelected2 = false;
@@ -473,7 +473,7 @@
     let timer2 = null;
     let startTime2 = null;
 
-    const DURATION_20S_MS = 20000; // 20 Segundos
+    const DURATION_35S_MS = 35000; // 35 Segundos
 
     function toggleSelection(cardNum) {
       if (cardNum === 1) {
@@ -544,11 +544,11 @@
 
         function animate1(currentTime) {
           const elapsed = currentTime - startTime1;
-          const pct = Math.min(100, Math.floor((elapsed / DURATION_20S_MS) * 100));
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_35S_MS) * 100));
           fill.style.width = pct + '%';
           percent.innerText = pct + '%';
 
-          if (elapsed < DURATION_20S_MS) {
+          if (elapsed < DURATION_35S_MS) {
             timer1 = requestAnimationFrame(animate1);
           } else {
             fill.style.width = '100%';
@@ -564,11 +564,11 @@
 
         function animate2(currentTime) {
           const elapsed = currentTime - startTime2;
-          const pct = Math.min(100, Math.floor((elapsed / DURATION_20S_MS) * 100));
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_35S_MS) * 100));
           fill.style.width = pct + '%';
           percent.innerText = pct + '%';
 
-          if (elapsed < DURATION_20S_MS) {
+          if (elapsed < DURATION_35S_MS) {
             timer2 = requestAnimationFrame(animate2);
           } else {
             fill.style.width = '100%';
