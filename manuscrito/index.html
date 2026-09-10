@@ -71,7 +71,7 @@
 
     .timer-span {
       background: #000000;
-      color: #00ff66;
+      color: #10b981;
       padding: 2px 8px;
       border-radius: 4px;
       margin-left: 6px;
@@ -87,12 +87,12 @@
       margin-bottom: 24px;
     }
 
-    /* BOX COM FUNDO TRANSPARENTE E APENAS BORDAS VERDES */
+    /* BOX COM FUNDO TRANSPARENTE E APENAS BORDAS VERDES (#0a934a) */
     .bonus-badge {
       display: inline-block;
       background-color: transparent;
-      border: 2px solid #00ff66;
-      color: #00ff66;
+      border: 2px solid #0a934a;
+      color: #10b981;
       font-family: 'Poppins', sans-serif;
       font-size: 14px;
       font-weight: 900;
@@ -101,7 +101,7 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 12px;
-      box-shadow: 0 0 12px rgba(0, 255, 102, 0.25);
+      box-shadow: 0 0 12px rgba(10, 147, 74, 0.35);
     }
 
     .main-title {
@@ -166,8 +166,8 @@
     }
 
     .product-card.selected .product-badge {
-      background: #00ff66;
-      color: #000000;
+      background: #0a934a;
+      color: #ffffff;
     }
 
     /* LIVROS GIRANDO EM SEU PRÓPRIO EIXO (FLUTUANDO) */
@@ -210,7 +210,7 @@
       line-height: 1.4;
     }
 
-    /* CAIXA DE SELEÇÃO E BARRA VERDE FLUORESCENTE LADO A LADO */
+    /* CAIXA DE SELEÇÃO E BARRA VERDE DO CHECKOUT (#0a934a) */
     .selection-box {
       width: 100%;
       background: #1f2532;
@@ -225,9 +225,9 @@
     }
 
     .product-card.selected .selection-box {
-      background: #0b1d12;
-      border-color: #00ff66;
-      box-shadow: 0 0 12px rgba(0, 255, 102, 0.2);
+      background: #061f12;
+      border-color: #0a934a;
+      box-shadow: 0 0 12px rgba(10, 147, 74, 0.3);
     }
 
     .custom-checkbox {
@@ -243,15 +243,15 @@
     }
 
     .product-card.selected .custom-checkbox {
-      background: #00ff66;
-      border-color: #00ff66;
+      background: #0a934a;
+      border-color: #0a934a;
     }
 
     .custom-checkbox::after {
       content: '✓';
       font-size: 16px;
       font-weight: 900;
-      color: #000000;
+      color: #ffffff;
       display: none;
     }
 
@@ -276,7 +276,7 @@
       letter-spacing: 0.3px;
     }
 
-    /* BARRA DE PROGRESSO VERDE FLUORESCENTE DIRETA AO LADO DA CAIXINHA */
+    /* BARRA DE PROGRESSO COM A MESMA COR VERDE DO BOTÃO CHECKOUT (#0a934a / #10b981) */
     .inline-progress-box {
       width: 100%;
       display: none;
@@ -293,7 +293,7 @@
     }
 
     .inline-progress-text {
-      color: #00ff66;
+      color: #10b981;
       font-size: 10px;
       font-weight: 700;
     }
@@ -308,23 +308,23 @@
     .inline-progress-bar-bg {
       width: 100%;
       height: 8px;
-      background: #030805;
+      background: #030d07;
       border-radius: 4px;
       overflow: hidden;
-      border: 1px solid rgba(0, 255, 102, 0.4);
+      border: 1px solid rgba(10, 147, 74, 0.5);
       position: relative;
     }
 
     .inline-progress-bar-fill {
       width: 0%;
       height: 100%;
-      background: linear-gradient(90deg, #00b347, #00ff66, #b3ffcc);
-      box-shadow: 0 0 10px #00ff66, 0 0 15px #00ff66;
+      background: linear-gradient(90deg, #076d37, #0a934a, #10b981);
+      box-shadow: 0 0 10px rgba(10, 147, 74, 0.6);
       border-radius: 4px;
       transition: width 0.1s linear;
     }
 
-    /* 4. CTA SECTION (MESMA COR DA PÁGINA BLACK: #0a934a) */
+    /* 4. CTA SECTION (COR DO BOTÃO CHECKOUT: #0a934a) */
     .cta-container {
       text-align: center;
     }
@@ -440,7 +440,7 @@
           <div class="selection-content">
             <span class="selection-label" id="lbl-1">CLIQUE PARA SELECIONAR</span>
             
-            <!-- BARRA VERDE FLUORESCENTE DIRETA AO LADO DA CAIXINHA -->
+            <!-- BARRA NA COR VERDE DO CHECKOUT (#0a934a) DIRETA AO LADO DA CAIXINHA -->
             <div class="inline-progress-box" id="progress-box-1">
               <div class="inline-progress-header">
                 <span class="inline-progress-text" id="progress-text-1">seu bônus está sendo incorporado no seu produto...</span>
@@ -468,7 +468,7 @@
           <div class="selection-content">
             <span class="selection-label" id="lbl-2">CLIQUE PARA SELECIONAR</span>
             
-            <!-- BARRA VERDE FLUORESCENTE DIRETA AO LADO DA CAIXINHA -->
+            <!-- BARRA NA COR VERDE DO CHECKOUT (#0a934a) DIRETA AO LADO DA CAIXINHA -->
             <div class="inline-progress-box" id="progress-box-2">
               <div class="inline-progress-header">
                 <span class="inline-progress-text" id="progress-text-2">seu bônus está sendo incorporado no seu produto...</span>
@@ -497,7 +497,7 @@
 
   </div>
 
-  <!-- INTERACTIVE JS: TIMER DE 3 MINUTOS, SELEÇÃO E BARRAS VERDE FLUORESCENTE DE 35 SEGUNDOS -->
+  <!-- INTERACTIVE JS: TIMER DE 3 MINUTOS, SELEÇÃO E BARRAS DE 35 SEGUNDOS -->
   <script>
     // 1. CONTAGEM REGRESSIVA DE 3 MINUTOS (TOP BANNER)
     let totalSeconds = 180; // 3 minutos
