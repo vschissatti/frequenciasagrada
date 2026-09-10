@@ -190,7 +190,7 @@
       transform: scale(1.03);
     }
 
-    /* CARREGAMENTO DE 30 SEGUNDOS */
+    /* CARREGAMENTO COM CONTAGEM REGRESSIVA INTERNA */
     .modal-loading-step {
       display: flex;
       flex-direction: column;
@@ -198,15 +198,34 @@
       padding: 10px 0;
     }
 
+    .spinner-container {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
     .modal-spinner {
-      width: 54px;
-      height: 54px;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       border: 5px solid rgba(10, 147, 74, 0.2);
       border-top: 5px solid #10b981;
       border-radius: 50%;
       animation: spinLoader 1s linear infinite;
       box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
-      margin-bottom: 18px;
+    }
+
+    .spinner-countdown-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      color: #10b981;
+      z-index: 2;
     }
 
     @keyframes spinLoader {
@@ -786,9 +805,12 @@
         </form>
       </div>
 
-      <!-- ETAPA 2: CARREGAMENTO DE 30 SEGUNDOS COM APENAS SÍMBOLO DE CARREGANDO -->
+      <!-- ETAPA 2: CARREGAMENTO DE 24 SEGUNDOS COM CONTAGEM REGRESSIVA INTERNA NO SPINNER -->
       <div class="modal-loading-step" id="modalLoadingStep" style="display: none;">
-        <div class="modal-spinner"></div>
+        <div class="spinner-container">
+          <div class="modal-spinner"></div>
+          <span class="spinner-countdown-text" id="spinnerCountdown">24s</span>
+        </div>
         <h3 class="loading-title">LIBERANDO SEU ACESSO...</h3>
         <p class="loading-subtext">Sua área exclusiva está sendo configurada. Por favor, aguarde.</p>
       </div>
@@ -919,18 +941,32 @@
       const emailInput = document.getElementById('userEmail');
       if (!emailInput || !emailInput.value.trim()) return;
 
-      // Oculta formulário de dados e exibe apenas o símbolo de carregando por 30 segundos
+      // Oculta formulário de dados e exibe o símbolo de carregando com contagem regressiva de 24s
       document.getElementById('modalFormStep').style.display = 'none';
       document.getElementById('modalLoadingStep').style.display = 'flex';
 
-      setTimeout(() => {
-        const overlay = document.getElementById('gateModalOverlay');
-        overlay.classList.add('hidden');
-        document.body.classList.remove('modal-locked');
-      }, 30000); // 30 Segundos
+      let secondsLeft = 24;
+      const countdownEl = document.getElementById('spinnerCountdown');
+      countdownEl.innerText = `${secondsLeft}s`;
+
+      const gateTimer = setInterval(() => {
+        secondsLeft--;
+        if (secondsLeft <= 0) {
+          clearInterval(gateTimer);
+          countdownEl.innerText = '0s';
+
+          setTimeout(() => {
+            const overlay = document.getElementById('gateModalOverlay');
+            overlay.classList.add('hidden');
+            document.body.classList.remove('modal-locked');
+          }, 200);
+          return;
+        }
+        countdownEl.innerText = `${secondsLeft}s`;
+      }, 1000);
     }
 
-    // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 35 SEGUNDOS
+    // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 10 SEGUNDOS
     let isSelected1 = false;
     let isSelected2 = false;
 
@@ -940,7 +976,7 @@
     let timer2 = null;
     let startTime2 = null;
 
-    const DURATION_35S_MS = 35000; // 35 Segundos
+    const DURATION_10S_MS = 10000; // 10 Segundos
 
     function toggleSelection(cardNum) {
       if (cardNum === 1) {
@@ -1011,11 +1047,11 @@
 
         function animate1(currentTime) {
           const elapsed = currentTime - startTime1;
-          const pct = Math.min(100, Math.floor((elapsed / DURATION_35S_MS) * 100));
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_10S_MS) * 100));
           fill.style.width = pct + '%';
           percent.innerText = pct + '%';
 
-          if (elapsed < DURATION_35S_MS) {
+          if (elapsed < DURATION_10S_MS) {
             timer1 = requestAnimationFrame(animate1);
           } else {
             fill.style.width = '100%';
@@ -1031,11 +1067,11 @@
 
         function animate2(currentTime) {
           const elapsed = currentTime - startTime2;
-          const pct = Math.min(100, Math.floor((elapsed / DURATION_35S_MS) * 100));
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_10S_MS) * 100));
           fill.style.width = pct + '%';
           percent.innerText = pct + '%';
 
-          if (elapsed < DURATION_35S_MS) {
+          if (elapsed < DURATION_10S_MS) {
             timer2 = requestAnimationFrame(animate2);
           } else {
             fill.style.width = '100%';
