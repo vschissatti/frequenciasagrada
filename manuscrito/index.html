@@ -69,10 +69,10 @@
       margin-bottom: 12px;
     }
 
-    /* 2. HEADLINE & SUBHEADLINE */
+    /* 2. HEADLINE SECTION */
     .header-box {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .bonus-badge {
@@ -92,22 +92,15 @@
 
     .main-title {
       font-family: 'Poppins', sans-serif;
-      font-size: clamp(20px, 4vw, 32px);
+      font-size: clamp(22px, 4vw, 34px);
       font-weight: 900;
       line-height: 1.25;
       color: #ffffff;
       text-transform: uppercase;
-      margin-bottom: 6px;
     }
 
     .main-title span {
       color: #ffb000;
-    }
-
-    .sub-title {
-      font-size: 14px;
-      color: #a0aab2;
-      font-weight: 500;
     }
 
     /* 3. TWO PRODUCTS CARDS (SIDE-BY-SIDE GRID) */
@@ -177,29 +170,18 @@
       font-weight: 800;
       color: #ffffff;
       line-height: 1.25;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       text-transform: uppercase;
     }
 
     .product-desc {
       font-size: 12px;
       color: #9aa0a6;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       line-height: 1.4;
     }
 
-    .product-price-tag {
-      font-size: 13px;
-      color: #cccccc;
-      margin-bottom: 12px;
-    }
-
-    .product-price-tag strong {
-      font-size: 18px;
-      color: #ffb000;
-    }
-
-    /* CUSTOM SELECTION CHECKBOX */
+    /* CAIXA DE SELEÇÃO E BARRA VERDE FLUORESCENTE LADO A LADO */
     .selection-box {
       width: 100%;
       background: #1f2532;
@@ -208,20 +190,20 @@
       padding: 10px 12px;
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 10px;
       transition: all 0.2s ease;
       user-select: none;
     }
 
     .product-card.selected .selection-box {
-      background: #332600;
-      border-color: #ffb000;
+      background: #0b1d12;
+      border-color: #00ff66;
+      box-shadow: 0 0 12px rgba(0, 255, 102, 0.2);
     }
 
     .custom-checkbox {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border: 2px solid #666;
       border-radius: 4px;
       display: flex;
@@ -232,13 +214,13 @@
     }
 
     .product-card.selected .custom-checkbox {
-      background: #ffb000;
-      border-color: #ffb000;
+      background: #00ff66;
+      border-color: #00ff66;
     }
 
     .custom-checkbox::after {
       content: '✓';
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 900;
       color: #000000;
       display: none;
@@ -246,6 +228,15 @@
 
     .product-card.selected .custom-checkbox::after {
       display: block;
+    }
+
+    .selection-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: left;
+      min-width: 0;
     }
 
     .selection-label {
@@ -256,45 +247,36 @@
       letter-spacing: 0.3px;
     }
 
-    /* MINI BARRA DE PROGRESSO VERDE FLUORESCENTE INTERNA DO CARD */
-    .card-progress-box {
+    /* BARRA DE PROGRESSO VERDE FLUORESCENTE AO LADO DA CAIXINHA */
+    .inline-progress-box {
       width: 100%;
-      margin-top: 10px;
-      background: #08140c;
-      border: 1px solid #00ff66;
-      border-radius: 6px;
-      padding: 8px 10px;
-      box-shadow: 0 0 10px rgba(0, 255, 102, 0.25);
-      animation: fadeIn 0.3s ease-in-out;
+      display: none;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .card-progress-header {
+    .inline-progress-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       margin-bottom: 4px;
+      line-height: 1.2;
     }
 
-    .card-progress-text {
+    .inline-progress-text {
       color: #00ff66;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
     }
 
-    .card-progress-percent {
+    .inline-progress-percent {
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      margin-left: 4px;
     }
 
-    .card-progress-bar-bg {
+    .inline-progress-bar-bg {
       width: 100%;
       height: 8px;
       background: #030805;
@@ -304,7 +286,7 @@
       position: relative;
     }
 
-    .card-progress-bar-fill {
+    .inline-progress-bar-fill {
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #00b347, #00ff66, #b3ffcc);
@@ -405,7 +387,6 @@
       <h1 class="main-title">
         2 MANUSCRITOS NOVOS <span>APENAS PARA VOCÊ!</span>
       </h1>
-      <p class="sub-title">Selecione abaixo quais manuscritos deseja adicionar ao seu pedido atual com 80% de desconto:</p>
     </div>
 
     <!-- 3. PRODUCTS CARDS GRID -->
@@ -417,23 +398,26 @@
         <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo" class="product-img">
         <h2 class="product-title">MANUSCRITO<br>CAFÉ COM SEU ANJO</h2>
         <p class="product-desc">Ensina a sintonia matinal exata para alinhar sua frequência de bênçãos e paz espiritual todos os dias.</p>
-        <p class="product-price-tag">Por apenas <strong>12x R$ 8,97</strong></p>
         
         <div class="selection-box">
           <div class="custom-checkbox" id="chk-1"></div>
-          <span class="selection-label" id="lbl-1">CLIQUE PARA ADICIONAR</span>
+          
+          <div class="selection-content">
+            <span class="selection-label" id="lbl-1">CLIQUE PARA SELECIONAR</span>
+            
+            <!-- BARRA VERDE FLUORESCENTE DIRETA AO LADO DA CAIXINHA -->
+            <div class="inline-progress-box" id="progress-box-1">
+              <div class="inline-progress-header">
+                <span class="inline-progress-text" id="progress-text-1">seu bônus está sendo incorporado no seu produto...</span>
+                <span class="inline-progress-percent" id="progress-percent-1">0%</span>
+              </div>
+              <div class="inline-progress-bar-bg">
+                <div class="inline-progress-bar-fill" id="progress-fill-1"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- MINIBARRA DE PROGRESSO VERDE FLUORESCENTE INTERNA (CARD 1) -->
-        <div class="card-progress-box" id="card-progress-1" style="display: none;">
-          <div class="card-progress-header">
-            <span class="card-progress-text" id="card-progress-text-1">⚡ Adicionando...</span>
-            <span class="card-progress-percent" id="card-progress-percent-1">0%</span>
-          </div>
-          <div class="card-progress-bar-bg">
-            <div class="card-progress-bar-fill" id="card-progress-fill-1"></div>
-          </div>
-        </div>
       </div>
 
       <!-- CARD 2: GRIMÓRIO DE SÃO BENTO -->
@@ -442,23 +426,26 @@
         <img src="img-grimorio-bento.png" alt="Grimório de São Bento" class="product-img">
         <h2 class="product-title">GRIMÓRIO DE<br>SÃO BENTO</h2>
         <p class="product-desc">O antídoto mais poderoso de blindagem espiritual contra inveja, feitiçaria e ataques invisíveis.</p>
-        <p class="product-price-tag">Por apenas <strong>12x R$ 8,97</strong></p>
         
         <div class="selection-box">
           <div class="custom-checkbox" id="chk-2"></div>
-          <span class="selection-label" id="lbl-2">CLIQUE PARA ADICIONAR</span>
+          
+          <div class="selection-content">
+            <span class="selection-label" id="lbl-2">CLIQUE PARA SELECIONAR</span>
+            
+            <!-- BARRA VERDE FLUORESCENTE DIRETA AO LADO DA CAIXINHA -->
+            <div class="inline-progress-box" id="progress-box-2">
+              <div class="inline-progress-header">
+                <span class="inline-progress-text" id="progress-text-2">seu bônus está sendo incorporado no seu produto...</span>
+                <span class="inline-progress-percent" id="progress-percent-2">0%</span>
+              </div>
+              <div class="inline-progress-bar-bg">
+                <div class="inline-progress-bar-fill" id="progress-fill-2"></div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- MINIBARRA DE PROGRESSO VERDE FLUORESCENTE INTERNA (CARD 2) -->
-        <div class="card-progress-box" id="card-progress-2" style="display: none;">
-          <div class="card-progress-header">
-            <span class="card-progress-text" id="card-progress-text-2">⚡ Adicionando...</span>
-            <span class="card-progress-percent" id="card-progress-percent-2">0%</span>
-          </div>
-          <div class="card-progress-bar-bg">
-            <div class="card-progress-bar-fill" id="card-progress-fill-2"></div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -475,7 +462,7 @@
 
   </div>
 
-  <!-- INTERACTIVE JS: SELEÇÃO INDIVIDUAL E MINIBARRAS VERDE FLUORESCENTE DE 20 SEGUNDOS DENTRO DOS CARDS -->
+  <!-- INTERACTIVE JS: SELEÇÃO INDIVIDUAL E BARRAS VERDE FLUORESCENTE DE 20 SEGUNDOS AO LADO DA CAIXINHA -->
   <script>
     let isSelected1 = false;
     let isSelected2 = false;
@@ -493,17 +480,17 @@
         isSelected1 = !isSelected1;
         updateCard1UI();
         if (isSelected1) {
-          startCardProgress(1);
+          startInlineProgress(1);
         } else {
-          stopCardProgress(1);
+          stopInlineProgress(1);
         }
       } else if (cardNum === 2) {
         isSelected2 = !isSelected2;
         updateCard2UI();
         if (isSelected2) {
-          startCardProgress(2);
+          startInlineProgress(2);
         } else {
-          stopCardProgress(2);
+          stopInlineProgress(2);
         }
       }
     }
@@ -515,11 +502,12 @@
       if (isSelected1) {
         card1.classList.add('selected');
         badge1.innerText = 'SELECIONADO';
-        lbl1.innerText = 'ADICIONADO AO PEDIDO';
+        lbl1.style.display = 'none';
       } else {
         card1.classList.remove('selected');
         badge1.innerText = 'DISPONÍVEL';
-        lbl1.innerText = 'CLIQUE PARA ADICIONAR';
+        lbl1.style.display = 'block';
+        lbl1.innerText = 'CLIQUE PARA SELECIONAR';
       }
     }
 
@@ -530,24 +518,25 @@
       if (isSelected2) {
         card2.classList.add('selected');
         badge2.innerText = 'SELECIONADO';
-        lbl2.innerText = 'ADICIONADO AO PEDIDO';
+        lbl2.style.display = 'none';
       } else {
         card2.classList.remove('selected');
         badge2.innerText = 'DISPONÍVEL';
-        lbl2.innerText = 'CLIQUE PARA ADICIONAR';
+        lbl2.style.display = 'block';
+        lbl2.innerText = 'CLIQUE PARA SELECIONAR';
       }
     }
 
-    function startCardProgress(cardNum) {
-      const box = document.getElementById(`card-progress-${cardNum}`);
-      const fill = document.getElementById(`card-progress-fill-${cardNum}`);
-      const percent = document.getElementById(`card-progress-percent-${cardNum}`);
-      const text = document.getElementById(`card-progress-text-${cardNum}`);
+    function startInlineProgress(cardNum) {
+      const box = document.getElementById(`progress-box-${cardNum}`);
+      const fill = document.getElementById(`progress-fill-${cardNum}`);
+      const percent = document.getElementById(`progress-percent-${cardNum}`);
+      const text = document.getElementById(`progress-text-${cardNum}`);
 
       box.style.display = 'block';
       fill.style.width = '0%';
       percent.innerText = '0%';
-      text.innerHTML = '⚡ Adicionando...';
+      text.innerText = 'seu bônus está sendo incorporado no seu produto...';
 
       if (cardNum === 1) {
         if (timer1) cancelAnimationFrame(timer1);
@@ -564,7 +553,7 @@
           } else {
             fill.style.width = '100%';
             percent.innerText = '100%';
-            text.innerHTML = '✅ Confirmado!';
+            text.innerText = '✅ seu bônus foi incorporado com sucesso!';
           }
         }
         timer1 = requestAnimationFrame(animate1);
@@ -584,15 +573,15 @@
           } else {
             fill.style.width = '100%';
             percent.innerText = '100%';
-            text.innerHTML = '✅ Confirmado!';
+            text.innerText = '✅ seu bônus foi incorporado com sucesso!';
           }
         }
         timer2 = requestAnimationFrame(animate2);
       }
     }
 
-    function stopCardProgress(cardNum) {
-      const box = document.getElementById(`card-progress-${cardNum}`);
+    function stopInlineProgress(cardNum) {
+      const box = document.getElementById(`progress-box-${cardNum}`);
       box.style.display = 'none';
 
       if (cardNum === 1 && timer1) {
