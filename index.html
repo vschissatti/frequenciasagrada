@@ -204,14 +204,31 @@
       border-radius: 16px;
       text-decoration: none;
       box-shadow: 0 4px 20px rgba(10, 147, 74, 0.4);
-      transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
+      animation: pulse-cta 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulse-cta {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(10, 147, 74, 0.4);
+      }
+      50% {
+        transform: scale(1.04);
+        box-shadow: 0 8px 30px rgba(10, 147, 74, 0.75), 0 0 18px rgba(16, 185, 129, 0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(10, 147, 74, 0.4);
+      }
     }
 
     .vsl-cta-button:hover {
       background-color: #0c9e50;
-      transform: scale(1.02);
-      box-shadow: 0 6px 25px rgba(10, 147, 74, 0.6);
+      transform: scale(1.06);
+      box-shadow: 0 8px 32px rgba(10, 147, 74, 0.9);
+      animation-play-state: paused;
     }
 
     @media (max-width: 600px) {
