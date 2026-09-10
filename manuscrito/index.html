@@ -54,19 +54,31 @@
       padding: 15px 15px 40px 15px;
     }
 
-    /* 1. WARNING TOP BANNER */
+    /* 1. WARNING TOP BANNER COM CONTAGEM REGRESSIVA DE 3 MINUTOS */
     .warning-banner {
       width: 100%;
       background-color: #d90429;
       color: #ffffff;
-      padding: 8px 12px;
+      padding: 9px 12px;
       text-align: center;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.5px;
       text-transform: uppercase;
       border-radius: 6px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+    }
+
+    .timer-span {
+      background: #000000;
+      color: #00ff66;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-left: 6px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      font-weight: 900;
+      display: inline-block;
     }
 
     /* 2. HEADLINE SECTION */
@@ -75,19 +87,21 @@
       margin-bottom: 24px;
     }
 
+    /* BOX COM FUNDO TRANSPARENTE E APENAS BORDAS VERDES */
     .bonus-badge {
       display: inline-block;
-      background-color: #ffb000;
-      color: #000000;
+      background-color: transparent;
+      border: 2px solid #00ff66;
+      color: #00ff66;
       font-family: 'Poppins', sans-serif;
       font-size: 14px;
       font-weight: 900;
-      padding: 6px 16px;
+      padding: 6px 18px;
       border-radius: 20px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 10px;
-      box-shadow: 0 4px 12px rgba(255, 176, 0, 0.3);
+      margin-bottom: 12px;
+      box-shadow: 0 0 12px rgba(0, 255, 102, 0.25);
     }
 
     .main-title {
@@ -124,6 +138,7 @@
       position: relative;
       transition: all 0.3s ease;
       cursor: pointer;
+      perspective: 1000px;
     }
 
     .product-card:hover {
@@ -131,7 +146,6 @@
       transform: translateY(-2px);
     }
 
-    /* CARD SELECIONADO: MANTEIM BORDAS DISCRETAS NEUTRAS (SEM BORDA AMARELA) */
     .product-card.selected {
       border-color: #2e3748;
       background: #14171d;
@@ -156,12 +170,27 @@
       color: #000000;
     }
 
+    /* LIVROS GIRANDO EM SEU PRÓPRIO EIXO (FLUTUANDO) */
     .product-img {
       width: 100%;
       max-width: 220px;
       height: auto;
       object-fit: contain;
-      margin: 10px 0;
+      margin: 14px 0;
+      animation: floatSpin 7s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    @keyframes floatSpin {
+      0% {
+        transform: translateY(0px) rotateY(0deg);
+      }
+      50% {
+        transform: translateY(-8px) rotateY(180deg);
+      }
+      100% {
+        transform: translateY(0px) rotateY(360deg);
+      }
     }
 
     .product-title {
@@ -295,7 +324,7 @@
       transition: width 0.1s linear;
     }
 
-    /* 4. CTA SECTION */
+    /* 4. CTA SECTION (MESMA COR DA PÁGINA BLACK: #0a934a) */
     .cta-container {
       text-align: center;
     }
@@ -306,38 +335,43 @@
       justify-content: center;
       width: 100%;
       max-width: 550px;
-      background: linear-gradient(180deg, #ffc400 0%, #d49000 100%);
-      color: #000000;
-      font-family: 'Poppins', sans-serif;
-      font-size: 18px;
-      font-weight: 900;
+      background-color: #0a934a;
+      color: #ffffff;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 19px;
+      font-weight: 700;
       text-align: center;
       text-decoration: none;
       text-transform: uppercase;
       padding: 16px 24px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(255, 176, 0, 0.4);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(10, 147, 74, 0.4);
       cursor: pointer;
-      transition: all 0.2s ease;
-      animation: pulse-gold 2s infinite ease-in-out;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      animation: pulse-cta 1.8s infinite ease-in-out;
       border: none;
     }
 
-    .btn-cta-main:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 30px rgba(255, 176, 0, 0.6);
-    }
-
-    @keyframes pulse-gold {
+    @keyframes pulse-cta {
       0% {
-        box-shadow: 0 4px 15px rgba(255, 176, 0, 0.4);
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(10, 147, 74, 0.4);
       }
       50% {
-        box-shadow: 0 8px 30px rgba(255, 176, 0, 0.75);
+        transform: scale(1.04);
+        box-shadow: 0 8px 30px rgba(10, 147, 74, 0.75), 0 0 18px rgba(16, 185, 129, 0.6);
       }
       100% {
-        box-shadow: 0 4px 15px rgba(255, 176, 0, 0.4);
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(10, 147, 74, 0.4);
       }
+    }
+
+    .btn-cta-main:hover {
+      background-color: #0c9e50;
+      transform: scale(1.06);
+      box-shadow: 0 8px 32px rgba(10, 147, 74, 0.9);
+      animation-play-state: paused;
     }
 
     .no-thanks-link {
@@ -366,8 +400,9 @@
         max-width: 170px;
       }
       .btn-cta-main {
-        font-size: 15px;
+        font-size: 16px;
         padding: 14px 18px;
+        border-radius: 12px;
       }
     }
   </style>
@@ -376,16 +411,16 @@
 
   <div class="wrapper">
     
-    <!-- 1. WARNING TOP BANNER -->
+    <!-- 1. WARNING TOP BANNER COM CONTAGEM REGRESSIVA DE 3 MINUTOS -->
     <div class="warning-banner">
-      ⚠️ NÃO FECHE ESSA PÁGINA OU SUA ORDEM FICARÁ INCOMPLETA
+      ⚠️ NÃO FECHE ESSA PÁGINA OU SUA ORDEM FICARÁ INCOMPLETA — SEU TEMPO EXPIRA EM: <span class="timer-span" id="topTimer">03:00</span>
     </div>
 
     <!-- 2. HEADLINE SECTION -->
     <div class="header-box">
       <div class="bonus-badge">🎁 VOCÊ ACABOU DE GANHAR 2 BÔNUS!</div>
       <h1 class="main-title">
-        2 MANUSCRITOS NOVOS <span>APENAS PARA VOCÊ!</span>
+        2 MANUSCRITOS NOVOS <span>PARA VOCÊ!</span>
       </h1>
     </div>
 
@@ -462,8 +497,25 @@
 
   </div>
 
-  <!-- INTERACTIVE JS: SELEÇÃO INDIVIDUAL E BARRAS VERDE FLUORESCENTE DE 35 SEGUNDOS -->
+  <!-- INTERACTIVE JS: TIMER DE 3 MINUTOS, SELEÇÃO E BARRAS VERDE FLUORESCENTE DE 35 SEGUNDOS -->
   <script>
+    // 1. CONTAGEM REGRESSIVA DE 3 MINUTOS (TOP BANNER)
+    let totalSeconds = 180; // 3 minutos
+    const topTimerEl = document.getElementById('topTimer');
+
+    const countdownInterval = setInterval(() => {
+      if (totalSeconds <= 0) {
+        clearInterval(countdownInterval);
+        topTimerEl.innerText = '00:00';
+        return;
+      }
+      totalSeconds--;
+      const m = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+      const s = String(totalSeconds % 60).padStart(2, '0');
+      topTimerEl.innerText = `${m}:${s}`;
+    }, 1000);
+
+    // 2. LÓGICA DE SELEÇÃO DOS CARDS E MINIBARRAS DE 35 SEGUNDOS
     let isSelected1 = false;
     let isSelected2 = false;
 
