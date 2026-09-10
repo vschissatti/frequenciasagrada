@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parabéns! Você é VIP - Frequência Sagrada</title>
+  <meta name="robots" content="index, follow">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Roboto', sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background: #260303;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/bg-obrigado.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .obrigado-container {
+      width: 100%;
+      max-width: 650px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .title-red {
+      font-family: 'Poppins', sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      color: #fd002a;
+      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .title-white {
+      font-family: 'Poppins', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: #faf7f7;
+      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: 0.5px;
+      margin-bottom: 25px;
+    }
+
+    .vip-box {
+      width: 100%;
+      max-width: 420px;
+      background: rgba(9, 128, 138, 0.78);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 8px;
+      padding: 32px 28px 36px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .vip-box-text {
+      color: #ffffff;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .vip-box-text strong {
+      font-weight: 700;
+    }
+
+    .btn-whatsapp {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background-color: #b0f901;
+      color: #000000;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 15px 20px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 12px rgba(176, 249, 1, 0.3);
+    }
+
+    .btn-whatsapp:hover {
+      background-color: #c4ef5e;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(176, 249, 1, 0.5);
+    }
+
+    .btn-whatsapp svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 600px) {
+      body {
+        padding: 30px 16px;
+        align-items: flex-start;
+        background-attachment: scroll;
+      }
+
+      .obrigado-container {
+        align-items: center;
+        text-align: center;
+      }
+
+      .title-red {
+        font-size: 34px;
+      }
+
+      .title-white {
+        font-size: 40px;
+        line-height: 1.2;
+        margin-bottom: 20px;
+      }
+
+      .vip-box {
+        max-width: 100%;
+        padding: 24px 20px 28px 20px;
+        text-align: left;
+      }
+
+      .vip-box-text {
+        font-size: 15px;
+      }
+
+      .btn-whatsapp {
+        font-size: 14px;
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="obrigado-container">
+    <h1 class="title-red">PARABÉNS!</h1>
+    <h2 class="title-white">AGORA VOCÊ É VIP</h2>
+
+    <div class="vip-box">
+      <p class="vip-box-text">
+        O acesso foi enviado para o e-mail que usou na compra!<br><br>
+        Se preferir, clique no botão abaixo e nos chame no WhatsApp para receber seu <strong>ACESSO</strong>
+      </p>
+
+      <a href="https://wa.me/message/WGMVX3FEFRE5J1" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 2.159.685 4.158 1.854 5.795L2.5 21.5l3.826-1.319C7.886 21.282 9.873 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.849 0-3.579-.54-5.034-1.472l-.361-.231-2.464.849.865-2.396-.253-.38C3.784 15.347 3.2 13.742 3.2 12c0-4.86 3.94-8.8 8.8-8.8s8.8 3.94 8.8 8.8-3.94 8.8-8.8 8.8z"/>
+        </svg>
+        CHAMAR NO WHATSAPP
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
