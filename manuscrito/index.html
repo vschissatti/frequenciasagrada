@@ -170,27 +170,171 @@
       color: #ffffff;
     }
 
-    /* LIVROS GIRANDO EM SEU PRÓPRIO EIXO (FLUTUANDO) */
-    .product-img {
-      width: 100%;
-      max-width: 220px;
-      height: auto;
-      object-fit: contain;
-      margin: 14px 0;
-      animation: floatSpin 7s ease-in-out infinite;
-      transform-style: preserve-3d;
+    /* LIVROS 3D GIRANDO EM SEU PRÓPRIO EIXO (FLUTUANDO COM PROFUNDIDADE 3D REAL) */
+    .book-stage {
+      perspective: 1000px;
+      width: 160px;
+      height: 220px;
+      margin: 14px auto 20px auto;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    @keyframes floatSpin {
+    .book-3d {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: floatRotate3D 7s ease-in-out infinite;
+    }
+
+    @keyframes floatRotate3D {
       0% {
-        transform: translateY(0px) rotateY(0deg);
+        transform: translateY(0px) rotateX(10deg) rotateY(0deg);
       }
       50% {
-        transform: translateY(-8px) rotateY(180deg);
+        transform: translateY(-12px) rotateX(10deg) rotateY(180deg);
       }
       100% {
-        transform: translateY(0px) rotateY(360deg);
+        transform: translateY(0px) rotateX(10deg) rotateY(360deg);
       }
+    }
+
+    .book-shadow {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 130px;
+      height: 16px;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 75%);
+      border-radius: 50%;
+      animation: shadowPulse 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes shadowPulse {
+      0%, 100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.75;
+      }
+      50% {
+        transform: translateX(-50%) scale(0.65);
+        opacity: 0.3;
+      }
+    }
+
+    .book-face {
+      position: absolute;
+      box-sizing: border-box;
+      backface-visibility: hidden;
+    }
+
+    /* Front Cover */
+    .book-face.front {
+      width: 160px;
+      height: 220px;
+      top: 0;
+      left: 0;
+      transform: translateZ(12px);
+      border-radius: 2px 5px 5px 2px;
+      overflow: hidden;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .book-face.front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Back Cover */
+    .book-face.back {
+      width: 160px;
+      height: 220px;
+      top: 0;
+      left: 0;
+      transform: rotateY(180deg) translateZ(12px);
+      border-radius: 5px 2px 2px 5px;
+      overflow: hidden;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .book-face.back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85) contrast(1.1);
+      transform: scaleX(-1);
+    }
+
+    /* Spine (Lombada - Lado Esquerdo) */
+    .book-face.spine {
+      width: 24px;
+      height: 220px;
+      top: 0;
+      left: -12px;
+      transform: rotateY(-90deg);
+      background: linear-gradient(90deg, #0d1117 0%, #2a3240 40%, #1a1f29 70%, #0d1117 100%);
+      border-top: 1px solid #ffb000;
+      border-bottom: 1px solid #ffb000;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: visible;
+    }
+
+    .book-face.spine::after {
+      content: '';
+      width: 4px;
+      height: 75%;
+      background: rgba(255, 176, 0, 0.45);
+      box-shadow: 0 0 6px rgba(255, 176, 0, 0.6);
+      border-radius: 2px;
+    }
+
+    /* Right Side (Páginas Empilhadas - Lado Direito) */
+    .book-face.right-pages {
+      width: 24px;
+      height: 216px;
+      top: 2px;
+      right: -12px;
+      transform: rotateY(90deg);
+      background: repeating-linear-gradient(90deg, #f2ebd9, #f2ebd9 2px, #d6c9b3 2px, #d6c9b3 4px);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.35);
+      border-radius: 2px;
+      backface-visibility: visible;
+    }
+
+    /* Top Side (Páginas Superior) */
+    .book-face.top-pages {
+      width: 156px;
+      height: 24px;
+      top: -12px;
+      left: 2px;
+      transform: rotateX(90deg);
+      background: repeating-linear-gradient(0deg, #f2ebd9, #f2ebd9 2px, #d6c9b3 2px, #d6c9b3 4px);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.35);
+      border-radius: 2px;
+      backface-visibility: visible;
+    }
+
+    /* Bottom Side (Páginas Inferior) */
+    .book-face.bottom-pages {
+      width: 156px;
+      height: 24px;
+      bottom: -12px;
+      left: 2px;
+      transform: rotateX(-90deg);
+      background: repeating-linear-gradient(0deg, #f2ebd9, #f2ebd9 2px, #d6c9b3 2px, #d6c9b3 4px);
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.35);
+      border-radius: 2px;
+      backface-visibility: visible;
     }
 
     .product-title {
@@ -396,8 +540,44 @@
       .product-card {
         padding: 14px;
       }
-      .product-img {
-        max-width: 170px;
+      .book-stage {
+        width: 130px;
+        height: 180px;
+        margin: 10px auto 16px auto;
+      }
+      .book-face.front, .book-face.back {
+        width: 130px;
+        height: 180px;
+      }
+      .book-face.front {
+        transform: translateZ(10px);
+      }
+      .book-face.back {
+        transform: rotateY(180deg) translateZ(10px);
+      }
+      .book-face.spine {
+        width: 20px;
+        height: 180px;
+        left: -10px;
+      }
+      .book-face.right-pages {
+        width: 20px;
+        height: 176px;
+        right: -10px;
+      }
+      .book-face.top-pages {
+        width: 126px;
+        height: 20px;
+        top: -10px;
+      }
+      .book-face.bottom-pages {
+        width: 126px;
+        height: 20px;
+        bottom: -10px;
+      }
+      .book-shadow {
+        width: 105px;
+        bottom: -16px;
       }
       .btn-cta-main {
         font-size: 16px;
@@ -430,7 +610,22 @@
       <!-- CARD 1: CAFÉ COM SEU ANJO -->
       <div class="product-card" id="card-1" onclick="toggleSelection(1)">
         <span class="product-badge" id="badge-1">DISPONÍVEL</span>
-        <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo" class="product-img">
+        <!-- LIVRO 3D ROTATIVO CARD 1 -->
+        <div class="book-stage">
+          <div class="book-3d">
+            <div class="book-face front">
+              <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo">
+            </div>
+            <div class="book-face back">
+              <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo">
+            </div>
+            <div class="book-face spine"></div>
+            <div class="book-face right-pages"></div>
+            <div class="book-face top-pages"></div>
+            <div class="book-face bottom-pages"></div>
+          </div>
+          <div class="book-shadow"></div>
+        </div>
         <h2 class="product-title">MANUSCRITO<br>CAFÉ COM SEU ANJO</h2>
         <p class="product-desc">Ensina a sintonia matinal exata para alinhar sua frequência de bênçãos e paz espiritual todos os dias.</p>
         
@@ -458,7 +653,22 @@
       <!-- CARD 2: GRIMÓRIO DE SÃO BENTO -->
       <div class="product-card" id="card-2" onclick="toggleSelection(2)">
         <span class="product-badge" id="badge-2">DISPONÍVEL</span>
-        <img src="img-grimorio-bento.png" alt="Grimório de São Bento" class="product-img">
+        <!-- LIVRO 3D ROTATIVO CARD 2 -->
+        <div class="book-stage">
+          <div class="book-3d">
+            <div class="book-face front">
+              <img src="img-grimorio-bento.png" alt="Grimório de São Bento">
+            </div>
+            <div class="book-face back">
+              <img src="img-grimorio-bento.png" alt="Grimório de São Bento">
+            </div>
+            <div class="book-face spine"></div>
+            <div class="book-face right-pages"></div>
+            <div class="book-face top-pages"></div>
+            <div class="book-face bottom-pages"></div>
+          </div>
+          <div class="book-shadow"></div>
+        </div>
         <h2 class="product-title">GRIMÓRIO DE<br>SÃO BENTO</h2>
         <p class="product-desc">O antídoto mais poderoso de blindagem espiritual contra inveja, feitiçaria e ataques invisíveis.</p>
         
