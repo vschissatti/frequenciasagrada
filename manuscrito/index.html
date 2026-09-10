@@ -115,7 +115,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
     .product-card {
@@ -138,7 +138,7 @@
       transform: translateY(-2px);
     }
 
-    /* CARD SELECIONADO: DOURADO (SEM VERDE FLUORESCENTE NO CARD) */
+    /* CARD SELECIONADO: DESTAQUE DOURADO */
     .product-card.selected {
       border-color: #ffb000;
       background: #1c1810;
@@ -256,59 +256,64 @@
       letter-spacing: 0.3px;
     }
 
-    /* 4. FLUORESCENT GREEN PROGRESS BAR SECTION (A ÚNICA COSA VERDE FLUORESCENTE) */
-    .progress-section {
+    /* MINI BARRA DE PROGRESSO VERDE FLUORESCENTE INTERNA DO CARD */
+    .card-progress-box {
       width: 100%;
-      background: #14171d;
+      margin-top: 10px;
+      background: #08140c;
       border: 1px solid #00ff66;
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 20px;
-      display: none; /* Exibida apenas ao selecionar */
-      box-shadow: 0 0 20px rgba(0, 255, 102, 0.25);
+      border-radius: 6px;
+      padding: 8px 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.25);
+      animation: fadeIn 0.3s ease-in-out;
     }
 
-    .progress-header {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-progress-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
+      margin-bottom: 4px;
     }
 
-    .progress-status-text {
+    .card-progress-text {
       color: #00ff66;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
-    .progress-percent-text {
+    .card-progress-percent {
       color: #ffffff;
       font-family: 'Poppins', sans-serif;
     }
 
-    .progress-bar-bg {
+    .card-progress-bar-bg {
       width: 100%;
-      height: 14px;
-      background: #050a07;
-      border-radius: 7px;
+      height: 8px;
+      background: #030805;
+      border-radius: 4px;
       overflow: hidden;
       border: 1px solid rgba(0, 255, 102, 0.4);
       position: relative;
     }
 
-    .progress-bar-fill {
+    .card-progress-bar-fill {
       width: 0%;
       height: 100%;
       background: linear-gradient(90deg, #00b347, #00ff66, #b3ffcc);
-      box-shadow: 0 0 15px #00ff66, 0 0 25px #00ff66;
-      border-radius: 7px;
+      box-shadow: 0 0 10px #00ff66, 0 0 15px #00ff66;
+      border-radius: 4px;
       transition: width 0.1s linear;
     }
 
-    /* 5. CTA SECTION */
+    /* 4. CTA SECTION */
     .cta-container {
       text-align: center;
     }
@@ -403,10 +408,10 @@
       <p class="sub-title">Selecione abaixo quais manuscritos deseja adicionar ao seu pedido atual com 80% de desconto:</p>
     </div>
 
-    <!-- 3. PRODUCTS CARDS GRID (SELEÇÃO INICIALMENTE DESATIVADA) -->
+    <!-- 3. PRODUCTS CARDS GRID -->
     <div class="products-grid">
       
-      <!-- CARD 1: CAFÉ COM SEU ANJO (DESSELECIONADO INICIALMENTE) -->
+      <!-- CARD 1: CAFÉ COM SEU ANJO -->
       <div class="product-card" id="card-1" onclick="toggleSelection(1)">
         <span class="product-badge" id="badge-1">DISPONÍVEL</span>
         <img src="img-cafe-anjo.png" alt="Manuscrito Café com Seu Anjo" class="product-img">
@@ -418,9 +423,20 @@
           <div class="custom-checkbox" id="chk-1"></div>
           <span class="selection-label" id="lbl-1">CLIQUE PARA ADICIONAR</span>
         </div>
+
+        <!-- MINIBARRA DE PROGRESSO VERDE FLUORESCENTE INTERNA (CARD 1) -->
+        <div class="card-progress-box" id="card-progress-1" style="display: none;">
+          <div class="card-progress-header">
+            <span class="card-progress-text" id="card-progress-text-1">⚡ Adicionando...</span>
+            <span class="card-progress-percent" id="card-progress-percent-1">0%</span>
+          </div>
+          <div class="card-progress-bar-bg">
+            <div class="card-progress-bar-fill" id="card-progress-fill-1"></div>
+          </div>
+        </div>
       </div>
 
-      <!-- CARD 2: GRIMÓRIO DE SÃO BENTO (DESSELECIONADO INICIALMENTE) -->
+      <!-- CARD 2: GRIMÓRIO DE SÃO BENTO -->
       <div class="product-card" id="card-2" onclick="toggleSelection(2)">
         <span class="product-badge" id="badge-2">DISPONÍVEL</span>
         <img src="img-grimorio-bento.png" alt="Grimório de São Bento" class="product-img">
@@ -432,24 +448,22 @@
           <div class="custom-checkbox" id="chk-2"></div>
           <span class="selection-label" id="lbl-2">CLIQUE PARA ADICIONAR</span>
         </div>
+
+        <!-- MINIBARRA DE PROGRESSO VERDE FLUORESCENTE INTERNA (CARD 2) -->
+        <div class="card-progress-box" id="card-progress-2" style="display: none;">
+          <div class="card-progress-header">
+            <span class="card-progress-text" id="card-progress-text-2">⚡ Adicionando...</span>
+            <span class="card-progress-percent" id="card-progress-percent-2">0%</span>
+          </div>
+          <div class="card-progress-bar-bg">
+            <div class="card-progress-bar-fill" id="card-progress-fill-2"></div>
+          </div>
+        </div>
       </div>
 
     </div>
 
-    <!-- 4. FLUORESCENT GREEN PROGRESS BAR (DISPARADA AO SELECIONAR UM CARD) -->
-    <div class="progress-section" id="progressSection">
-      <div class="progress-header">
-        <span class="progress-status-text" id="progressStatus">
-          ⚡ Adicionando manuscrito ao seu pedido...
-        </span>
-        <span class="progress-percent-text" id="progressPercent">0%</span>
-      </div>
-      <div class="progress-bar-bg">
-        <div class="progress-bar-fill" id="progressBarFill"></div>
-      </div>
-    </div>
-
-    <!-- 5. CTA BUTTON & REFUSAL -->
+    <!-- 4. CTA BUTTON & REFUSAL -->
     <div class="cta-container">
       <a href="https://checkout.kashpay.com.br/checkout/checkout-1789037509969" class="btn-cta-main" id="btnCta">
         RESGATAR MEU BÔNUS AGORA
@@ -461,37 +475,40 @@
 
   </div>
 
-  <!-- INTERACTIVE JS FOR CARD SELECTION & 20-SECOND FLUORESCENT PROGRESS BAR -->
+  <!-- INTERACTIVE JS: SELEÇÃO INDIVIDUAL E MINIBARRAS VERDE FLUORESCENTE DE 20 SEGUNDOS DENTRO DOS CARDS -->
   <script>
-    // Inicia sem seleção para o visitante escolher livremente
     let isSelected1 = false;
     let isSelected2 = false;
-    let progressTimer = null;
-    let progressStartTime = null;
-    const TOTAL_DURATION_MS = 20000; // 20 Segundos
+
+    let timer1 = null;
+    let startTime1 = null;
+
+    let timer2 = null;
+    let startTime2 = null;
+
+    const DURATION_20S_MS = 20000; // 20 Segundos
 
     function toggleSelection(cardNum) {
       if (cardNum === 1) {
         isSelected1 = !isSelected1;
+        updateCard1UI();
+        if (isSelected1) {
+          startCardProgress(1);
+        } else {
+          stopCardProgress(1);
+        }
       } else if (cardNum === 2) {
         isSelected2 = !isSelected2;
-      }
-
-      updateCardsUI();
-
-      // Dispara a barra de 20s se houver ao menos 1 card selecionado
-      if (isSelected1 || isSelected2) {
-        triggerProgressBar();
-      } else {
-        // Esconde a barra se desmarcar todos
-        const progressSection = document.getElementById('progressSection');
-        progressSection.style.display = 'none';
-        if (progressTimer) cancelAnimationFrame(progressTimer);
+        updateCard2UI();
+        if (isSelected2) {
+          startCardProgress(2);
+        } else {
+          stopCardProgress(2);
+        }
       }
     }
 
-    function updateCardsUI() {
-      // Card 1 UI
+    function updateCard1UI() {
       const card1 = document.getElementById('card-1');
       const badge1 = document.getElementById('badge-1');
       const lbl1 = document.getElementById('lbl-1');
@@ -504,8 +521,9 @@
         badge1.innerText = 'DISPONÍVEL';
         lbl1.innerText = 'CLIQUE PARA ADICIONAR';
       }
+    }
 
-      // Card 2 UI
+    function updateCard2UI() {
       const card2 = document.getElementById('card-2');
       const badge2 = document.getElementById('badge-2');
       const lbl2 = document.getElementById('lbl-2');
@@ -520,40 +538,68 @@
       }
     }
 
-    function triggerProgressBar() {
-      const progressSection = document.getElementById('progressSection');
-      const progressBarFill = document.getElementById('progressBarFill');
-      const progressPercent = document.getElementById('progressPercent');
-      const progressStatus = document.getElementById('progressStatus');
+    function startCardProgress(cardNum) {
+      const box = document.getElementById(`card-progress-${cardNum}`);
+      const fill = document.getElementById(`card-progress-fill-${cardNum}`);
+      const percent = document.getElementById(`card-progress-percent-${cardNum}`);
+      const text = document.getElementById(`card-progress-text-${cardNum}`);
 
-      progressSection.style.display = 'block';
-      progressBarFill.style.width = '0%';
-      progressPercent.innerText = '0%';
-      progressStatus.innerHTML = '⚡ Adicionando item ao seu pedido...';
+      box.style.display = 'block';
+      fill.style.width = '0%';
+      percent.innerText = '0%';
+      text.innerHTML = '⚡ Adicionando...';
 
-      if (progressTimer) {
-        cancelAnimationFrame(progressTimer);
-      }
+      if (cardNum === 1) {
+        if (timer1) cancelAnimationFrame(timer1);
+        startTime1 = performance.now();
 
-      progressStartTime = performance.now();
+        function animate1(currentTime) {
+          const elapsed = currentTime - startTime1;
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_20S_MS) * 100));
+          fill.style.width = pct + '%';
+          percent.innerText = pct + '%';
 
-      function animateProgress(currentTime) {
-        const elapsedTime = currentTime - progressStartTime;
-        const percent = Math.min(100, Math.floor((elapsedTime / TOTAL_DURATION_MS) * 100));
-
-        progressBarFill.style.width = percent + '%';
-        progressPercent.innerText = percent + '%';
-
-        if (elapsedTime < TOTAL_DURATION_MS) {
-          progressTimer = requestAnimationFrame(animateProgress);
-        } else {
-          progressBarFill.style.width = '100%';
-          progressPercent.innerText = '100%';
-          progressStatus.innerHTML = '✅ Item(ns) confirmado(s) e reservado(s) com sucesso!';
+          if (elapsed < DURATION_20S_MS) {
+            timer1 = requestAnimationFrame(animate1);
+          } else {
+            fill.style.width = '100%';
+            percent.innerText = '100%';
+            text.innerHTML = '✅ Confirmado!';
+          }
         }
-      }
+        timer1 = requestAnimationFrame(animate1);
 
-      progressTimer = requestAnimationFrame(animateProgress);
+      } else if (cardNum === 2) {
+        if (timer2) cancelAnimationFrame(timer2);
+        startTime2 = performance.now();
+
+        function animate2(currentTime) {
+          const elapsed = currentTime - startTime2;
+          const pct = Math.min(100, Math.floor((elapsed / DURATION_20S_MS) * 100));
+          fill.style.width = pct + '%';
+          percent.innerText = pct + '%';
+
+          if (elapsed < DURATION_20S_MS) {
+            timer2 = requestAnimationFrame(animate2);
+          } else {
+            fill.style.width = '100%';
+            percent.innerText = '100%';
+            text.innerHTML = '✅ Confirmado!';
+          }
+        }
+        timer2 = requestAnimationFrame(animate2);
+      }
+    }
+
+    function stopCardProgress(cardNum) {
+      const box = document.getElementById(`card-progress-${cardNum}`);
+      box.style.display = 'none';
+
+      if (cardNum === 1 && timer1) {
+        cancelAnimationFrame(timer1);
+      } else if (cardNum === 2 && timer2) {
+        cancelAnimationFrame(timer2);
+      }
     }
   </script>
 </body>
