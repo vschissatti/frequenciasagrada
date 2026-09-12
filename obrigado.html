@@ -8,6 +8,49 @@
   <title>Parabéns! Você é VIP - Frequência Sagrada</title>
   <meta name="robots" content="index, follow">
   
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var purchaseVal = parseFloat(params.get('value') || params.get('amount') || params.get('price') || '27.00');
+    var purchaseCurr = (params.get('currency') || 'BRL').toUpperCase();
+    var email = params.get('email') || params.get('em') || '';
+    var phone = params.get('phone') || params.get('ph') || '';
+
+    var initData = {};
+    if (email) initData.em = email.toLowerCase().trim();
+    if (phone) initData.ph = phone.replace(/\D/g, '');
+
+    fbq('init', '1095355623448113', initData);
+    fbq('track', 'PageView');
+
+    // Dispara Purchase na página de obrigado caso o cliente não tenha passado pela página de upsell
+    var storageKey = 'meta_purchase_tracked_' + (params.get('transaction_id') || params.get('order_id') || 'frontend_obrigado');
+    if (!sessionStorage.getItem(storageKey)) {
+      fbq('track', 'Purchase', {
+        value: purchaseVal,
+        currency: purchaseCurr,
+        content_name: 'Frequência Sagrada - Obrigado',
+        content_type: 'product'
+      });
+      sessionStorage.setItem(storageKey, 'true');
+    }
+  })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1095355623448113&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+  
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

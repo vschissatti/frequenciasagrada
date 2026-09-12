@@ -229,7 +229,7 @@
         </div>
       </div>
 
-      <button type="button" class="btn-cta-livros" onclick="acceptUpsell('https://checkout.kashpay.com.br/u/3c896a4b882605c6')">
+      <button type="button" class="btn-cta-livros" onclick="handleUpsell2Accept('https://checkout.kashpay.com.br/u/3c896a4b882605c6')">
         Quero ver o que deus separou pra mim
       </button>
 
@@ -244,8 +244,24 @@
     </div>
   </div>
 
-  <!-- SCRIPT DE REPASSE DE UTMS -->
+  <!-- SCRIPT DE REPASSE DE UTMS & PIXEL UPSELL -->
   <script>
+    function handleUpsell2Accept(url) {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: 29.00,
+          currency: 'BRL',
+          content_name: 'Upsell 2 - Coleção 5 Manuscritos',
+          content_type: 'product'
+        });
+      }
+      if (typeof acceptUpsell === 'function') {
+        acceptUpsell(url);
+      } else {
+        window.location.href = url;
+      }
+    }
+
     (function() {
       const currentParams = window.location.search;
       if (!currentParams) return;

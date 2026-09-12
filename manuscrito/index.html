@@ -19,8 +19,33 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1095355623448113');
-  fbq('track', 'PageView');
+
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var purchaseVal = parseFloat(params.get('value') || params.get('amount') || params.get('price') || '27.00');
+    var purchaseCurr = (params.get('currency') || 'BRL').toUpperCase();
+    var email = params.get('email') || params.get('em') || '';
+    var phone = params.get('phone') || params.get('ph') || '';
+
+    var initData = {};
+    if (email) initData.em = email.toLowerCase().trim();
+    if (phone) initData.ph = phone.replace(/\D/g, '');
+
+    fbq('init', '1095355623448113', initData);
+    fbq('track', 'PageView');
+
+    // Dispara o evento de conversão (Purchase) do produto principal quando o cliente chega no Upsell 1
+    var storageKey = 'meta_purchase_tracked_' + (params.get('transaction_id') || params.get('order_id') || 'frontend_main');
+    if (!sessionStorage.getItem(storageKey)) {
+      fbq('track', 'Purchase', {
+        value: purchaseVal,
+        currency: purchaseCurr,
+        content_name: 'Frequência Sagrada - Oferta Principal',
+        content_type: 'product'
+      });
+      sessionStorage.setItem(storageKey, 'true');
+    }
+  })();
   </script>
   <noscript><img height="1" width="1" style="display:none"
   src="https://www.facebook.com/tr?id=1095355623448113&ev=PageView&noscript=1"
@@ -945,7 +970,7 @@
 
     <!-- 4. CTA BUTTON & REFUSAL -->
     <div class="cta-container">
-      <button type="button" class="btn-cta-main" id="btnCta" onclick="acceptUpsell('https://checkout.kashpay.com.br/u/a7c2af91061899c9')">
+      <button type="button" class="btn-cta-main" id="btnCta" onclick="handleUpsellAccept('https://checkout.kashpay.com.br/u/a7c2af91061899c9')">
         RESGATAR MEU BÔNUS AGORA
       </button>
       <a href="https://frequenciasagrada.com/livros/" class="no-thanks-link">
@@ -957,6 +982,22 @@
 
   <!-- INTERACTIVE JS: MODAL GATE LOCK, SELEÇÃO E BARRAS DE 35 SEGUNDOS -->
   <script>
+    function handleUpsellAccept(url) {
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: 19.00,
+          currency: 'BRL',
+          content_name: 'Upsell 1 - 2 Manuscritos Sagrados',
+          content_type: 'product'
+        });
+      }
+      if (typeof acceptUpsell === 'function') {
+        acceptUpsell(url);
+      } else {
+        window.location.href = url;
+      }
+    }
+
     // 1. BLOQUEIO DE TELA INICIAL (MODAL GATE OVERLAY)
     document.body.classList.add('modal-locked');
 

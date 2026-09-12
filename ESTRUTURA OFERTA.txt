@@ -11,17 +11,26 @@ Considerando o seu domínio apontado para a raiz da hospedagem (ex: https://www.
 
 ⚪ White Page (Página Limpa / Safe Page):
 
-https://www.aulasagrada.com/ (Servida automaticamente pelo Cloaker para bots, moderadores do Meta e visitas diretas sem parâmetro)
-https://www.aulasagrada.com/safe.html
-https://www.aulasagrada.com/aoracaosecreta/
+https://www.frequenciasagrada.com/ (Servida automaticamente pelo Cloaker para bots, moderadores do Meta e visitas diretas sem parâmetro)
+https://www.frequenciasagrada.com/safe.html
+https://www.frequenciasagrada.com/aoracaosecreta/
 🔴 Black Page (Money Page / VSL do Epstein):
 
-https://www.aulasagrada.com/?src=vsl (Link oficial para usar nas campanhas do Meta Ads / UTMs)
-https://www.aulasagrada.com/?preview=vsl (Seu link de teste/preview para você e sua equipe acessarem diretamente)
-https://www.aulasagrada.com/black.html
-📈 Upsell 1 (Manuscritos Sagrados):
+https://www.frequenciasagrada.com/?src=vsl (Link oficial para usar nas campanhas do Meta Ads / UTMs)
+https://www.frequenciasagrada.com/?preview=vsl (Seu link de teste/preview para você e sua equipe acessarem diretamente)
+https://www.frequenciasagrada.com/black.html
 
-https://www.aulasagrada.com/manuscrito/
+📈 Upsell 1 (Manuscritos Sagrados):
+https://www.frequenciasagrada.com/manuscrito/
+
+Upsell 2: https://frequenciasagrada.com/livros/
+
 🎉 Página de Obrigado (Thank You Page):
 
-https://www.aulasagrada.com/obrigado/
+https://www.frequenciasagrada.com/obrigado/
+
+
+
+up 2: <script src="https://checkout.kashpay.com.br/scripts/upsell-processor.js"></script>
+
+<button type="button" onclick="acceptUpsell('https://checkout.kashpay.com.br/u/3c896a4b882605c6')" style="font-family: 'Poppins'; font-size: 18px; font-weight: 600; line-height: 1.3; color: #ffffff; background-color: #057932; border: none; border-radius: 10px; padding: 13px 7%; cursor: pointer; text-align: center; display: block; margin: auto;">Aceitar Oferta</button>
